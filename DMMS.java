@@ -45,13 +45,36 @@ public class SGDM {
         double size; // em bytes
 
         // setters
-        public void setSize (double newSize){
+        public void setSize (double newSize) {
             this.size = newSize;
         }
 
         // getters
         public void getSize () {
             return this.size;
+        }
+    }
+    
+    public class Partition {
+        int start;
+        int end;
+        
+        // setters
+        public void setStart (int newStart) {
+            this.start = newStart;
+        }
+        
+        public void setEnd (int newEnd) {
+            this.end = newEnd;
+        }
+        
+        // getters
+        public void getStart () {
+            return this.start;
+        }
+        
+        public void getEnd () {
+            return this.end;
         }
     }
 
