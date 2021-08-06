@@ -55,9 +55,11 @@ public class SGDM {
         }
     }
     
+    // classe das Partições de Memória
     public class Partition {
         int start;
         int end;
+        Program program;
         
         // setters
         public void setStart (int newStart) {
@@ -68,6 +70,10 @@ public class SGDM {
             this.end = newEnd;
         }
         
+        public void setProgram (Program newProgram) {
+            this.program = newProgram;
+        }
+        
         // getters
         public void getStart () {
             return this.start;
@@ -75,6 +81,10 @@ public class SGDM {
         
         public void getEnd () {
             return this.end;
+        }
+        
+        public void getProgram () {
+            return this.program;
         }
     }
 
