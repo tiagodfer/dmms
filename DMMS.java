@@ -38,6 +38,15 @@ public class SGDM {
         public double getRAMNeeded () {
             return this.RAMNeeded;
         }
+
+        // Utils
+        public Object clone() {
+            Program aClone = new Program();
+            aClone.name = this.name;
+            aClone.priority = this.priority;
+            aClone.RAMNeeded = this.RAMNeeded;
+            return aClone;
+        }
     }
 
     // classe da RAM a ser gerenciada
@@ -71,7 +80,11 @@ public class SGDM {
         }
         
         public void setProgram (Program newProgram) {
-            this.program = newProgram;
+            /* rever a forma de atribuição, pois pode estar errada
+               pois objetos são passados por referência e não por valor
+               https://www.codejava.net/coding/java-getter-and-setter-tutorial-from-basics-to-best-practices */
+            /* this.program = newProgram; */
+            this.program = (Program) newProgram.clone();
         }
         
         // getters
@@ -84,7 +97,11 @@ public class SGDM {
         }
         
         public Program getProgram () {
-            return this.program;
+            /* rever a forma de atribuição, pois pode estar errada
+               pois objetos são passados por referência e não por valor
+               https://www.codejava.net/coding/java-getter-and-setter-tutorial-from-basics-to-best-practices */
+            /* return this.program; */
+            return (Program) this.program.clone();
         }
     }
 
