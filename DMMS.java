@@ -27,15 +27,15 @@ public class SGDM {
         }
         
         // getters
-        public void getName () {
+        public String getName () {
             return this.name;
         }
         
-        public void getPriority () {
+        public int getPriority () {
             return this.priority;
         }
         
-        public void getRAMNeeded () {
+        public double getRAMNeeded () {
             return this.RAMNeeded;
         }
     }
@@ -50,7 +50,7 @@ public class SGDM {
         }
 
         // getters
-        public void getSize () {
+        public double getSize () {
             return this.size;
         }
     }
@@ -75,15 +75,15 @@ public class SGDM {
         }
         
         // getters
-        public void getStart () {
+        public int getStart () {
             return this.start;
         }
         
-        public void getEnd () {
+        public int getEnd () {
             return this.end;
         }
         
-        public void getProgram () {
+        public Program getProgram () {
             return this.program;
         }
     }
