@@ -9,9 +9,9 @@ public class SGDM {
 
     // classe dos programas a serem alocados
     public class Program {
-        String name;
-        int priority;
-        double RAMNeeded; // em bytes
+        private String name;
+        private int priority;
+        private double RAMNeeded; // em bytes
         
         // setters
         public void setName (String newName) {
@@ -42,7 +42,7 @@ public class SGDM {
 
     // classe da RAM a ser gerenciada
     public class Memory {
-        double size; // em bytes
+        private double size; // em bytes
 
         // setters
         public void setSize (double newSize) {
@@ -57,9 +57,9 @@ public class SGDM {
     
     // classe das Partições de Memória
     public class Partition {
-        int start;
-        int end;
-        Program program;
+        private int start;
+        private int end;
+        private Program program;
         
         // setters
         public void setStart (int newStart) {
