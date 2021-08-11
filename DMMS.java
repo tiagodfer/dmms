@@ -9,9 +9,9 @@ public class SGDM {
 
     // classe dos programas a serem alocados
     public class Program {
-        String name;
-        int priority;
-        double RAMNeeded; // em bytes
+        private String name;
+        private int priority;
+        private double RAMNeeded; // em bytes
         
         // setters
         public void setName (String newName) {
@@ -27,22 +27,31 @@ public class SGDM {
         }
         
         // getters
-        public void getName () {
+        public String getName () {
             return this.name;
         }
         
-        public void getPriority () {
+        public int getPriority () {
             return this.priority;
         }
         
-        public void getRAMNeeded () {
+        public double getRAMNeeded () {
             return this.RAMNeeded;
+        }
+
+        // Utils
+        public Object clone() {
+            Program aClone = new Program();
+            aClone.name = this.name;
+            aClone.priority = this.priority;
+            aClone.RAMNeeded = this.RAMNeeded;
+            return aClone;
         }
     }
 
     // classe da RAM a ser gerenciada
     public class Memory {
-        double size; // em bytes
+        private double size; // em bytes
 
         // setters
         public void setSize (double newSize) {
@@ -50,16 +59,16 @@ public class SGDM {
         }
 
         // getters
-        public void getSize () {
+        public double getSize () {
             return this.size;
         }
     }
     
     // classe das Partições de Memória
     public class Partition {
-        int start;
-        int end;
-        Program program;
+        private int start;
+        private int end;
+        private Program program;
         
         // setters
         public void setStart (int newStart) {
@@ -71,20 +80,28 @@ public class SGDM {
         }
         
         public void setProgram (Program newProgram) {
-            this.program = newProgram;
+            /* rever a forma de atribuição, pois pode estar errada
+               pois objetos são passados por referência e não por valor
+               https://www.codejava.net/coding/java-getter-and-setter-tutorial-from-basics-to-best-practices */
+            /* this.program = newProgram; */
+            this.program = (Program) newProgram.clone();
         }
         
         // getters
-        public void getStart () {
+        public int getStart () {
             return this.start;
         }
         
-        public void getEnd () {
+        public int getEnd () {
             return this.end;
         }
         
-        public void getProgram () {
-            return this.program;
+        public Program getProgram () {
+            /* rever a forma de atribuição, pois pode estar errada
+               pois objetos são passados por referência e não por valor
+               https://www.codejava.net/coding/java-getter-and-setter-tutorial-from-basics-to-best-practices */
+            /* return this.program; */
+            return (Program) this.program.clone();
         }
     }
 
