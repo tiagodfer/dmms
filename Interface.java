@@ -1,3 +1,3 @@
 package UI;
 
-import SGDM.circularQueue;
+import SGDM.CircularQueue;
