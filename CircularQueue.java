@@ -1,7 +1,7 @@
 package DMMS;
 
 import DMMS.memRequest;
-import java.util.Random;
+// import java.util.Random;
 import java.util.ArrayList;
 
 public final class circularQueue {

@@ -9,4 +9,12 @@ public class memRequest {
                       //https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/AtomicInteger.html
         this.size = size;
     }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public int getSize() {
+        return this.size;
+    }
 }
