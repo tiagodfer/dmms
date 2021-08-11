@@ -1,4 +1,4 @@
-package DMMS;
+package SGDM;
 
 public class memRequest {
     private int id;
