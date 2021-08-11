@@ -7,14 +7,14 @@ import java.util.ArrayList;
 public final class CircularQueue {
     private int initialPosition;
     private int finalPosition;
-    private memRequest[] queue;
+    private MemRequest[] queue;
     private int size;
     private int minRequests;
     private int maxRequests;
     private int elements;
     
     public CircularQueue(int size, int minRequests, int maxRequests) {
-        this.queue = new memRequest[size];
+        this.queue = new MemRequest[size];
         this.size = size;
         this.minRequests = minRequests;
         this.maxRequests = maxRequests;
@@ -27,7 +27,7 @@ public final class CircularQueue {
         return this.elements == this.size;
     }
 
-    private void addRequest(memRequest object) {
+    private void addRequest(MemRequest object) {
         if (!isFull()) {
             this.queue[initialPosition++] = object;
             this.elements++;
@@ -41,7 +41,7 @@ public final class CircularQueue {
 
     private void removeRequest() {
         if (!isEmpty()) {
-            memRequest request = queue[initialPosition++];
+            MemRequest request = queue[initialPosition++];
             this.elements--;
             if (this.initialPosition == this.size) this.initialPosition = 0;
             // inserir código para alocar a requisição na HEAP
