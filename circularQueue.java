@@ -1,6 +1,6 @@
-package DMMS;
+package SGDM;
 
-import DMMS.memRequest;
+import SGDM.memRequest;
 import java.util.Random;
 import java.util.ArrayList;
 
