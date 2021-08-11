@@ -1,10 +1,10 @@
 package SGDM;
 
-import SGDM.memRequest;
+import SGDM.MemRequest;
 import java.util.Random;
 import java.util.ArrayList;
 
-public final class circularQueue {
+public final class CircularQueue {
     private int initialPosition;
     private int finalPosition;
     private memRequest[] queue;
@@ -13,7 +13,7 @@ public final class circularQueue {
     private int maxRequests;
     private int elements;
     
-    public circularQueue(int size, int minRequests, int maxRequests) {
+    public CircularQueue(int size, int minRequests, int maxRequests) {
         this.queue = new memRequest[size];
         this.size = size;
         this.minRequests = minRequests;
