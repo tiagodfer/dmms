@@ -11,7 +11,7 @@ public class SGDM {
     public class Program {
         private String name;
         private int priority;
-        private double RAMNeeded; // em bytes
+        private long RAMNeeded; // em bytes
         
         // setters
         public void setName (String newName) {
@@ -35,7 +35,7 @@ public class SGDM {
             return this.priority;
         }
         
-        public double getRAMNeeded () {
+        public long getRAMNeeded () {
             return this.RAMNeeded;
         }
 
@@ -50,8 +50,8 @@ public class SGDM {
     }
 
     // classe da RAM a ser gerenciada
-    public class Memory {
-        private double size; // em bytes
+    public class memoryHeap {
+        private long size; // em bytes
 
         // setters
         public void setSize (double newSize) {
@@ -59,7 +59,7 @@ public class SGDM {
         }
 
         // getters
-        public double getSize () {
+        public long getSize () {
             return this.size;
         }
     }
@@ -107,16 +107,13 @@ public class SGDM {
 
     // método que alocará um Program em Memory
     public static void allocateRAM (Program program) {
-        System.out.println("Qual programa deseja alocar em memória?");
     }
     
     // método que encerrará um Program em Memory
     public static void freeRAM (Program program) {
-        System.out.println("Qual programa deseja remover da memória?");
     }
 
     // método principal
     public static void main(String[] args) {
-        System.out.println("DYNAMIC MEMORY MANAGEMENT SYSTEM");
     }
 }
