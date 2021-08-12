@@ -11,16 +11,28 @@ public class TUI {
     public static void main (String[] args) {
         System.out.println("DYNAMIC MEMORY MANAGEMENT SYSTEM");
 
-        Scanner heapScan = new Scanner(System.in);
+        Scanner heapSizeScan = new Scanner(System.in);
         System.out.println("Digite o tamanho da Heap de Memória:");
-        ??? = heapScan.nextLong(); //tô vendo ainda como passar as coisas por parâmetro em Java
+        ??? = heapSizeScan.nextLong(); //tô vendo ainda como passar as coisas por parâmetro em Java
                 
-        Scanner randomMin = new Scanner(System.in);
+        Scanner randomMinScan = new Scanner(System.in);
         System.out.println("Digite o tamanho mínimo das requisições geradas randomicamente:");
-        ??? = randomMin.nextLong(); //tô vendo ainda como passar as coisas por parâmetro em Java
+        ??? = randomMinScan.nextLong(); //tô vendo ainda como passar as coisas por parâmetro em Java
                 
-        Scanner randomMax = new Scanner(System.in);
+        Scanner randomMaxScan = new Scanner(System.in);
         System.out.println("Digite o tamanho máximo das requisições geradas randomicamente:");
-        ??? = randomMax.nextLong(); //tô vendo ainda como passar as coisas por parâmetro em Java
+        ??? = randomMaxScan.nextLong(); //tô vendo ainda como passar as coisas por parâmetro em Java
+        
+        Scanner reqNumberScan = new Scanner(System.in);
+        System.out.println("Digite a quantidade de requisições a serem realizadas:");
+        ??? = reqNumberScan.nextInt(); //tô vendo ainda como passar as coisas por parâmetro em Java
+        
+        Scanner maxRamUsageScan = new Scanner(System.in);
+        System.out.println("Digite o limite máximo de utilização da RAM:");
+        ??? = maxRamUsageScan.nextInt(); //tô vendo ainda como passar as coisas por parâmetro em Java
+        
+        Scanner freeRamThresholdScan = new Scanner(System.in);
+        System.out.println("Digite o limite mínimo a ser atingido ao liberar RAM:");
+        ??? = freeRamThresholdScan.nextInt(); //tô vendo ainda como passar as coisas por parâmetro em Java
     }
 }
