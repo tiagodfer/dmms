@@ -1,2 +1,1 @@
-# memory-management
-Memory management system written in Java
+# Sistema de Gerenciamento Dinâmico de Memória
