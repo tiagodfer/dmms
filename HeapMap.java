@@ -1,5 +1,3 @@
-package DMMS;
-
 public class heapMap {
     public int[][] heapStrucutre; //talvez mudar a visibilidade e implementar métodos SET e GET
     public int[] heap; //idem ao anterior

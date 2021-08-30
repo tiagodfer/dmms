@@ -1,5 +1,3 @@
-package SGDM;
-
 public class MemRequest {
     private int id;
     private int size; //words

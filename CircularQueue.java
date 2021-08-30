@@ -1,7 +1,3 @@
-package SGDM;
-
-import SGDM.MemRequest;
-import java.util.Random;
 import java.util.ArrayList;
 
 public final class CircularQueue {
