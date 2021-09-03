@@ -41,7 +41,7 @@ public class Interface {
             System.out.println("--------------------------------------------------------------------------------");
         }
 
-        public void setHeapParms (DMMS.memoryHeap memHeap, int heapSize) {
+        public void setHeapParms (HeapMap memHeap, int heapSize) {
             memHeap.setSize(heapSize);
         }
 
@@ -60,7 +60,7 @@ public class Interface {
         }
 
 
-        public void printParms (DMMS.memoryHeap memHeap, MemRequestGenerator reqGenerator, Deallocator memDeallocator) {
+        public void printParms (HeapMap memHeap, MemRequestGenerator reqGenerator, Deallocator memDeallocator) {
             System.out.println("Tamanho do Heap de Memória definido como " + memHeap.getSize() + " kByte(s).");
             System.out.println("Tamanho mínimo das requisições definido como " + reqGenerator.getMinRequestSize() + " kByte(s).");
             System.out.println("Tamanho mínimo das requisições definido como " + reqGenerator.getMaxRequestSize() + " kByte(s).");

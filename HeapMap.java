@@ -1,49 +1,42 @@
-public class heapMap {
-    public int[][] heapStrucutre; //talvez mudar a visibilidade e implementar métodos SET e GET
+public class HeapMap {
+    public int[][] structure; //talvez mudar a visibilidade e implementar métodos SET e GET
     public int[] heap; //idem ao anterior
     private int lastId;
-    private int heapSize;
-    private float occupationLimit; //percentual (entre zero e 1)
-    private float freeMemoryLimit; //percentual (entre zero e 1)
-    private int heapOccupation;
+    private int size;
+    private int occupation;
 
-    public heapMap(float occupationLimit, int heapSize) {
-        this.heapSize = heapSize;
-        this.occupationLimit = occupationLimit;
-        this.heapOccupation = 0;
+    public HeapMap() {
+        this.size = 0;
+        this.occupation = 0;
         this.lastId = 0;
-        this.heap = new int[heapSize];
-        this.heapStrucutre = new int[heapSize][3];
-        clearHeap(this.heapSize, 3);
+        this.heap = new int[size];
+        this.structure = new int[size][3];
+        clearHeap(this.size, 3);
     }
 
-    private clearHeap(int heapSize, int columns) {
-        for (int i = 0; i < heapSize; i++) {
+    private void clearHeap(int size, int columns) {
+        for (int i = 0; i < size; i++) {
             for (int j = 0; j < columns; j++) {
-                this.heapStructure[i][j] = 0;
+                this.structure[i][j] = 0;
             }
             this.heap[i] = 0;
         }
     }
 
     //Verificar se haverá necessidade de SETTERS e se necessitamos de todos esses GETTERS
+    public void setSize (int newSize) {
+        this.size = newSize;
+    }
+
     public int getLastId() {
         return this.lastId;
     }
 
-    public int getHeapSize() {
-        return this.heapSize;
+    public int getSize() {
+        return this.size;
     }
 
-    public int getOccupationLimit() {
-        return this.occupationLimit;
-    }
-
-    public int getFreeMemoryLimit() {
-        return this.heapOccupation;
-    }
-
-    public int getHeapOccupation() {
-        return this.heapOccupation;
+    public int getOccupation() {
+        return this.occupation;
     }
 }
