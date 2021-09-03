@@ -11,7 +11,7 @@ public class DMMS {
     public class Program {
         private String name;
         private int priority;
-        private long RAMNeeded; // em bytes
+        private int RAMNeeded; // em kBytes
         
         // setters
         public void setName (String newName) {
@@ -35,7 +35,7 @@ public class DMMS {
             return this.priority;
         }
         
-        public long getRAMNeeded () {
+        public int getRAMNeeded () {
             return this.RAMNeeded;
         }
 
@@ -51,15 +51,15 @@ public class DMMS {
 
     // classe da RAM a ser gerenciada
     public class memoryHeap {
-        private long size; // em bytes
+        private int size; // em bytes
 
         // setters
-        public void setSize (long newSize) {
+        public void setSize (int newSize) {
             this.size = newSize;
         }
 
         // getters
-        public long getSize () {
+        public int getSize () {
             return this.size;
         }
     }
@@ -114,19 +114,32 @@ public class DMMS {
     }
 
     // método principal
-    public static void main(String[] args) {
-        DMMS memManager = new DMMS();
-        DMMS.memoryHeap memHeap = memManager.new memoryHeap();
-        MemRequestGenerator reqGenerator = new MemRequestGenerator();
-        Deallocator memDeallocator = new Deallocator();
+    public static void main(String args[]) {
+        if (args.length >= 6) {
+            DMMS memManager = new DMMS();
+            DMMS.memoryHeap memHeap = memManager.new memoryHeap();
+            MemRequestGenerator reqGenerator = new MemRequestGenerator();
+            Deallocator memDeallocator = new Deallocator();
+            CircularQueue queue = new CircularQueue(10);
 
-        Interface tui = new Interface();
-        Interface.args params = tui.new args();
+            Interface tui = new Interface();
+            Interface.args params = tui.new args();
 
-        params.greeting();
-        params.setHeapParms(memHeap, new Long(args[0]));
-        params.setReqParms(reqGenerator, new Long (args[1]), new Long(args[2]), new Integer(args[3]));
-        params.setDeallocParms(memDeallocator, new Integer(args[4]), new Integer(args[5]));
-        params.printParms(memHeap, reqGenerator,memDeallocator);
+            params.greeting();
+            params.setHeapParms(memHeap, new Integer(args[0]));
+            params.setReqParms(reqGenerator, new Integer(args[1]), new Integer(args[2]), new Integer(args[3]));
+            params.setDeallocParms(memDeallocator, new Integer(args[4]), new Integer(args[5]));
+            params.printParms(memHeap, reqGenerator,memDeallocator);
+
+            while (reqGenerator.getRequestsQuantity() > 0) {
+                while (!queue.isFull()) {
+                    MemRequest memRequest = reqGenerator.generateRandomRequest(reqGenerator.getMinRequestSize(), reqGenerator.getMaxRequestSize());
+                    queue.addRequest(memRequest);
+                }
+            }
+        }
+        else {
+            System.out.println("Número insuficiente de argumentos!");
+        }
     }
 }

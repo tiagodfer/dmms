@@ -36,17 +36,17 @@ public class Interface {
     public class args {
         
         public void greeting () {
-            System.out.println("Bem vindo ao DMMS: Dymanic Memory Management Systemi!");
+            System.out.println("Bem vindo ao DMMS: Dymanic Memory Management System!");
             System.out.println("Vamos definir os parâmetros iniciais.");
             System.out.println("--------------------------------------------------------------------------------");
         }
 
-        public void setHeapParms (DMMS.memoryHeap memHeap, long heapSize) {
+        public void setHeapParms (DMMS.memoryHeap memHeap, int heapSize) {
             memHeap.setSize(heapSize);
         }
 
 
-        public void setReqParms (MemRequestGenerator reqGenerator, long randomMin, long randomMax, int reqQuant) {
+        public void setReqParms (MemRequestGenerator reqGenerator, int randomMin, int randomMax, int reqQuant) {
             reqGenerator.setMinRequestSize(randomMin);
             reqGenerator.setMaxRequestSize(randomMax);
             reqGenerator.setRequestsQuantity(reqQuant);
@@ -61,9 +61,9 @@ public class Interface {
 
 
         public void printParms (DMMS.memoryHeap memHeap, MemRequestGenerator reqGenerator, Deallocator memDeallocator) {
-            System.out.println("Tamanho do Heap de Memória definido como " + memHeap.getSize() + " byte(s).");
-            System.out.println("Tamanho mínimo das requisições definido como " + reqGenerator.getMinRequestSize() + " byte(s).");
-            System.out.println("Tamanho mínimo das requisições definido como " + reqGenerator.getMaxRequestSize() + " byte(s).");
+            System.out.println("Tamanho do Heap de Memória definido como " + memHeap.getSize() + " kByte(s).");
+            System.out.println("Tamanho mínimo das requisições definido como " + reqGenerator.getMinRequestSize() + " kByte(s).");
+            System.out.println("Tamanho mínimo das requisições definido como " + reqGenerator.getMaxRequestSize() + " kByte(s).");
             System.out.println("Quantidade de requisições a serem realizadas definido como " + reqGenerator.getRequestsQuantity() + ".");
             System.out.println("O máximo de ocupação da RAM definido como " + memDeallocator.getMaxRamUsage() + "%.");
             System.out.println("O limiar mínimo de ocupação de RAM para atuação do Desalocador definido como " + memDeallocator.getFreeRamThreshold() + "%.");
