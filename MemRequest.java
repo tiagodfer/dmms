@@ -8,6 +8,11 @@ public class MemRequest {
         this.size = size;
     }
 
+    public MemRequest () {
+        this.id = 0;
+        this.size = 0;
+    }
+
     public int getId() {
         return this.id;
     }

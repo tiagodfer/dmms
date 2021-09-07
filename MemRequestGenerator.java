@@ -49,8 +49,9 @@ public class MemRequestGenerator {
     public MemRequest generateRandomRequest (int minRequestSize, int maxRequestSize) {
         Random randomizer = new Random();
         
+        System.out.println("-------------------------");
         System.out.println("Gerando requisição:");
-        MemRequest memRequest = new MemRequest(lastRequestId, randomizer.nextInt(maxRequestSize) + minRequestSize);
+        MemRequest memRequest = new MemRequest(lastRequestId, randomizer.nextInt(maxRequestSize - minRequestSize + 1) + minRequestSize);
         this.decrementRequestsQuantity();
         this.incrementLastRequestId();
         System.out.println("Requisição " + memRequest.getId()  + " de " + memRequest.getSize() + " kByte(s) gerada.");

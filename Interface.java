@@ -43,6 +43,7 @@ public class Interface {
 
         public void setHeapParms (HeapMap memHeap, int heapSize) {
             memHeap.setSize(heapSize);
+            memHeap.addBlock();
         }
 
 

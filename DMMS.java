@@ -13,6 +13,7 @@ public class DMMS {
             MemRequestGenerator reqGenerator = new MemRequestGenerator();
             Deallocator memDeallocator = new Deallocator();
             CircularQueue queue = new CircularQueue(10);
+            Allocator memAllocator = new Allocator();
 
             Interface tui = new Interface();
             Interface.args params = tui.new args();
@@ -23,11 +24,12 @@ public class DMMS {
             params.setDeallocParms(memDeallocator, new Integer(args[4]), new Integer(args[5]));
             params.printParms(memHeap, reqGenerator,memDeallocator);
 
-            while (reqGenerator.getRequestsQuantity() > 0) {
-                while (!queue.isFull()) {
+            while (reqGenerator.getRequestsQuantity() > 0 && !queue.isFull()) {
                     MemRequest memRequest = reqGenerator.generateRandomRequest(reqGenerator.getMinRequestSize(), reqGenerator.getMaxRequestSize());
+                    MemRequest allocRequest = new MemRequest();
+                    
                     queue.addRequest(memRequest);
-                }
+                    memAllocator.allocate(allocRequest, queue, memHeap);
             }
         }
         else {
