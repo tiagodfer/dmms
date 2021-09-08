@@ -29,6 +29,7 @@ public class DMMS {
                     MemRequest allocRequest = new MemRequest();
                     
                     queue.addRequest(memRequest);
+                    memDeallocator.deallocate(queue, memHeap);
                     memAllocator.allocate(allocRequest, queue, memHeap);
             }
         }

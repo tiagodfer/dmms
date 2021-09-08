@@ -9,6 +9,10 @@ public class Block {
         this.occupied = occupied;
     }
 
+    public void addSize (int newSize) {
+        this.size += newSize;
+    }
+
     public void setStart (int newStart) {
         this.start = newStart;
     }

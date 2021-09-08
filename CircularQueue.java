@@ -33,7 +33,15 @@ public final class CircularQueue {
         return this.elements == 0;
     }
 
-    public MemRequest removeRequest() {
+    public MemRequest getRequest () {
+        MemRequest memRequest = new MemRequest();
+        if(!isEmpty()) {
+            memRequest = queue[this.getInitialPosition()];
+        }
+        return memRequest;
+    }
+
+    public MemRequest removeRequest () {
         MemRequest memRequest = new MemRequest();
         if (!isEmpty()) {
             memRequest = queue[this.getInitialPosition()];
