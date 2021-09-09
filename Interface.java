@@ -1,73 +1,36 @@
-/**
-* A princípio podemos fazer um programa que rode direto no terminal,
-* não sei se é necessário fazer uma GUI para o nosso programa
-*/
-import java.util.Scanner;
-
 public class Interface {
-    public void scanner () {
-        System.out.println("DYNAMIC MEMORY MANAGEMENT SYSTEM");
-
-        Scanner heapSizeScan = new Scanner(System.in);
-        System.out.println("Digite o tamanho da Heap de Memória:");
-        //??? = heapSizeScan.nextLong(); //tô vendo ainda como passar as coisas por parâmetro em Java
-                
-        Scanner randomMinScan = new Scanner(System.in);
-        System.out.println("Digite o tamanho mínimo das requisições geradas randomicamente:");
-        //??? = randomMinScan.nextLong(); //tô vendo ainda como passar as coisas por parâmetro em Java
-                
-        Scanner randomMaxScan = new Scanner(System.in);
-        System.out.println("Digite o tamanho máximo das requisições geradas randomicamente:");
-        //??? = randomMaxScan.nextLong(); //tô vendo ainda como passar as coisas por parâmetro em Java
-        
-        Scanner reqQuantScan = new Scanner(System.in);
-        System.out.println("Digite a quantidade de requisições a serem realizadas:");
-        //??? = reqNumberScan.nextInt(); //tô vendo ainda como passar as coisas por parâmetro em Java
-        
-        Scanner maxRamUsageScan = new Scanner(System.in);
-        System.out.println("Digite o limite máximo de utilização da RAM:");
-        //??? = maxRamUsageScan.nextInt(); //tô vendo ainda como passar as coisas por parâmetro em Java
-        
-        Scanner freeRamThresholdScan = new Scanner(System.in);
-        System.out.println("Digite o limite mínimo a ser atingido ao liberar RAM:");
-        //??? = freeRamThresholdScan.nextInt(); //tô vendo ainda como passar as coisas por parâmetro em Java
+    public void greeting () {
+        System.out.println("Bem vindo ao DMMS: Dymanic Memory Management System!");
+        System.out.println("Vamos definir os parâmetros iniciais.");
+        System.out.println("--------------------------------------------------------------------------------");
     }
 
-    public class args {
-        
-        public void greeting () {
-            System.out.println("Bem vindo ao DMMS: Dymanic Memory Management System!");
-            System.out.println("Vamos definir os parâmetros iniciais.");
-            System.out.println("--------------------------------------------------------------------------------");
-        }
-
-        public void setHeapParms (HeapMap memHeap, int heapSize) {
-            memHeap.setSize(heapSize);
-            memHeap.addBlock();
-        }
+    public void setHeapParms (HeapMap map, int heapSize) {
+        map.setSize(heapSize);
+        map.addBlock();
+    }
 
 
-        public void setReqParms (MemRequestGenerator reqGenerator, int randomMin, int randomMax, int reqQuant) {
-            reqGenerator.setMinRequestSize(randomMin);
-            reqGenerator.setMaxRequestSize(randomMax);
-            reqGenerator.setRequestsQuantity(reqQuant);
-        }
-        
+    public void setReqParms (RequestGenerator generator, int randomMin, int randomMax, int reqQuant) {
+        generator.setMinRequestSize(randomMin);
+        generator.setMaxRequestSize(randomMax);
+        generator.setRequestsQuantity(reqQuant);
+    }
+    
 
 
-        public void setDeallocParms (Deallocator memDeallocator, int maxRamUsage, int freeRamThreshold) {
-            memDeallocator.setMaxRamUsage(maxRamUsage);
-            memDeallocator.setFreeRamThreshold(freeRamThreshold);
-        }
+    public void setDeallocParms (Deallocator deallocator, int maxRamUsage, int freeRamThreshold) {
+        deallocator.setMaxRamUsage(maxRamUsage);
+        deallocator.setFreeRamThreshold(freeRamThreshold);
+    }
 
 
-        public void printParms (HeapMap memHeap, MemRequestGenerator reqGenerator, Deallocator memDeallocator) {
-            System.out.println("Tamanho do Heap de Memória definido como " + memHeap.getSize() + " kByte(s).");
-            System.out.println("Tamanho mínimo das requisições definido como " + reqGenerator.getMinRequestSize() + " kByte(s).");
-            System.out.println("Tamanho mínimo das requisições definido como " + reqGenerator.getMaxRequestSize() + " kByte(s).");
-            System.out.println("Quantidade de requisições a serem realizadas definido como " + reqGenerator.getRequestsQuantity() + ".");
-            System.out.println("O máximo de ocupação da RAM definido como " + memDeallocator.getMaxRamUsage() + "%.");
-            System.out.println("O limiar mínimo de ocupação de RAM para atuação do Desalocador definido como " + memDeallocator.getFreeRamThreshold() + "%.");
-        }
+    public void printParms (HeapMap map, RequestGenerator generator, Deallocator deallocator) {
+        System.out.println("Tamanho do Heap de Memória definido como " + map.getSize() + " kByte(s).");
+        System.out.println("Tamanho mínimo das requisições definido como " + generator.getMinRequestSize() + " kByte(s).");
+        System.out.println("Tamanho mínimo das requisições definido como " + generator.getMaxRequestSize() + " kByte(s).");
+        System.out.println("Quantidade de requisições a serem realizadas definido como " + generator.getRequestsQuantity() + ".");
+        System.out.println("O máximo de ocupação da RAM definido como " + deallocator.getMaxRamUsage() + "%.");
+        System.out.println("O limiar mínimo de ocupação de RAM para atuação do Desalocador definido como " + deallocator.getFreeRamThreshold() + "%.");
     }
 }

@@ -29,40 +29,40 @@ public class Deallocator {
         }
     }
 
-    public void mergeBlocks (HeapMap memHeap, int block) {
-        if (block != (memHeap.getHeapSize() - 1)) {
-            if (!memHeap.getBlock(block + 1).getOccupied()) {
-                memHeap.getBlock(block).addSize(memHeap.getBlock(block + 1).getSize());
-                memHeap.getArray().remove(block + 1);
+    public void mergeBlocks (HeapMap map, int block) {
+        if (block != (map.getBlockSize() - 1)) {
+            if (!map.getBlock(block + 1).getOccupied()) {
+                map.getBlock(block).addSize(map.getBlock(block + 1).getSize());
+                map.getArray().remove(block + 1);
                 System.out.println("Bloco " + block + " e seu sucessor unidos.");
             }
         }
         if (block != 0) {
-            if (!memHeap.getBlock(block - 1).getOccupied()) {
-                memHeap.getBlock(block - 1).addSize(memHeap.getBlock(block).getSize());
-                memHeap.getArray().remove(block);
+            if (!map.getBlock(block - 1).getOccupied()) {
+                map.getBlock(block - 1).addSize(map.getBlock(block).getSize());
+                map.getArray().remove(block);
                 System.out.println("Bloco " + block + " e seu antecessor unidos.");
             }
         }
     }
 
-    public void kill (HeapMap memHeap, int block) {
-        memHeap.getBlock(block).setOccupied(false);
-        memHeap.removeOccupation(memHeap.calcOccupation(memHeap.getBlock(block).getSize()));
+    public void kill (HeapMap map, int block) {
+        map.getBlock(block).setOccupied(false);
+        map.removeOccupation(map.calcOccupation(map.getBlock(block).getSize()));
         System.out.println("Processo do bloco " + block + " encerrado.");
     }
 
-    public void deallocate (CircularQueue queue, HeapMap memHeap, MemRequestGenerator reqGenerator) {
-        if (memHeap.getOccupiedHeaps() != 0) {
-            if (this.isFull(memHeap.getOccupation())) {
-                while (memHeap.getOccupation() > this.getFreeRamThreshold()) {
+    public void deallocate (Queue queue, HeapMap map, RequestGenerator generator) {
+        if (map.getOccupiedHeaps() != 0) {
+            if (this.isFull(map.getOccupation())) {
+                while (map.getOccupation() > this.getFreeRamThreshold()) {
                     Random randomizer = new Random();
-                    int rand = randomizer.nextInt(memHeap.getOccupiedHeaps());
-                    for (int i = 0; i < memHeap.getHeapSize(); i++) {
-                        if (memHeap.getBlock(i).getOccupied()) {
+                    int rand = randomizer.nextInt(map.getOccupiedHeaps());
+                    for (int i = 0; i < map.getBlockSize(); i++) {
+                        if (map.getBlock(i).getOccupied()) {
                             if (rand == 0) {
-                                this.kill (memHeap, i);
-                                this.mergeBlocks (memHeap, i);
+                                this.kill (map, i);
+                                this.mergeBlocks (map, i);
                                 break;
                             }
                             rand--;
@@ -70,14 +70,14 @@ public class Deallocator {
                     }
                 }
             }
-            else if (queue.isFull() || reqGenerator.getLastRequestId() == reqGenerator.getRequestsQuantity()) {
+            else if (queue.isFull() || generator.getLastRequestId() == generator.getRequestsQuantity()) {
                 Random randomizer = new Random();
-                int rand = randomizer.nextInt(memHeap.getOccupiedHeaps());
-                for (int i = 0; i < memHeap.getHeapSize(); i++) {
-                    if (memHeap.getBlock(i).getOccupied()) {
+                int rand = randomizer.nextInt(map.getOccupiedHeaps());
+                for (int i = 0; i < map.getBlockSize(); i++) {
+                    if (map.getBlock(i).getOccupied()) {
                         if (rand == 0) {
-                            this.kill (memHeap, i);
-                            this.mergeBlocks (memHeap, i);
+                            this.kill (map, i);
+                            this.mergeBlocks (map, i);
                             break;
                         }
                         rand--;

@@ -21,7 +21,7 @@ public class HeapMap {
 
     public int getOccupiedHeaps () {
         int occupied = 0;
-        for (int i = 0; i < this.getHeapSize(); i++) {
+        for (int i = 0; i < this.getBlockSize(); i++) {
             if (this.getBlock(i).getOccupied()) {
                 occupied++;
             }
@@ -37,7 +37,7 @@ public class HeapMap {
         return this.heap.get(block);
     }
 
-    public int getHeapSize () {
+    public int getBlockSize () {
         return this.heap.size();
     }
 

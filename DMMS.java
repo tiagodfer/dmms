@@ -22,34 +22,33 @@ public class DMMS {
         if (args.length >= 6) {
             DMMS dmms = new DMMS();
 
-            HeapMap memHeap = new HeapMap();
-            MemRequestGenerator reqGenerator = new MemRequestGenerator();
-            Deallocator memDeallocator = new Deallocator();
-            CircularQueue queue = new CircularQueue(10);
-            Allocator memAllocator = new Allocator();
+            HeapMap map = new HeapMap();
+            RequestGenerator generator = new RequestGenerator();
+            Deallocator deallocator = new Deallocator();
+            Queue queue = new Queue(10);
+            Allocator allocator = new Allocator();
 
-            Interface tui = new Interface();
-            Interface.args params = tui.new args();
+            Interface params = new Interface();
 
             params.greeting();
-            params.setHeapParms(memHeap, new Integer(args[0]));
-            params.setReqParms(reqGenerator, new Integer(args[1]), new Integer(args[2]), new Integer(args[3]));
-            params.setDeallocParms(memDeallocator, new Integer(args[4]), new Integer(args[5]));
-            params.printParms(memHeap, reqGenerator,memDeallocator);
+            params.setHeapParms(map, new Integer(args[0]));
+            params.setReqParms(generator, new Integer(args[1]), new Integer(args[2]), new Integer(args[3]));
+            params.setDeallocParms(deallocator, new Integer(args[4]), new Integer(args[5]));
+            params.printParms(map, generator,deallocator);
 
-            MemRequest memRequest = new MemRequest();
-            MemRequest allocRequest = new MemRequest();
+            Request memRequest = new Request();
+            Request allocRequest = new Request();
            
-            while (dmms.getFinishedRequests() < reqGenerator.getRequestsQuantity()) {
+            while (dmms.getFinishedRequests() < generator.getRequestsQuantity()) {
                 System.out.println("------------");
-                if (!queue.isFull() && reqGenerator.getLastRequestId() != reqGenerator.getRequestsQuantity()) {
-                    memRequest = reqGenerator.generateRandomRequest(reqGenerator.getMinRequestSize(), reqGenerator.getMaxRequestSize());
+                if (!queue.isFull() && generator.getLastRequestId() != generator.getRequestsQuantity()) {
+                    memRequest = generator.generateRandomRequest(generator.getMinRequestSize(), generator.getMaxRequestSize());
                 }
-                if (reqGenerator.getLastRequestId() <= reqGenerator.getRequestsQuantity()) {
+                if (generator.getLastRequestId() <= generator.getRequestsQuantity()) {
                     queue.addRequest(memRequest);
                 }
-                memAllocator.allocate(dmms, allocRequest, queue, memHeap);
-                memDeallocator.deallocate(queue, memHeap, reqGenerator);
+                allocator.allocate(dmms, allocRequest, queue, map);
+                deallocator.deallocate(queue, map, generator);
             }
         }
         else {
