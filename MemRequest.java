@@ -13,6 +13,10 @@ public class MemRequest {
         this.size = 0;
     }
 
+    public void setId (int newId) {
+        this.id = newId;
+    }
+
     public int getId() {
         return this.id;
     }

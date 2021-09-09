@@ -49,11 +49,28 @@ public class Deallocator {
     public void kill (HeapMap memHeap, int block) {
         memHeap.getBlock(block).setOccupied(false);
         memHeap.removeOccupation(memHeap.calcOccupation(memHeap.getBlock(block).getSize()));
+        System.out.println("Processo do bloco " + block + " encerrado.");
     }
 
-    public void deallocate (CircularQueue queue, HeapMap memHeap) {
-        if (this.isFull(memHeap.getOccupation()) || !queue.isEmpty()) {
-            while (memHeap.getOccupation() > this.getFreeRamThreshold()) {
+    public void deallocate (CircularQueue queue, HeapMap memHeap, MemRequestGenerator reqGenerator) {
+        if (memHeap.getOccupiedHeaps() != 0) {
+            if (this.isFull(memHeap.getOccupation())) {
+                while (memHeap.getOccupation() > this.getFreeRamThreshold()) {
+                    Random randomizer = new Random();
+                    int rand = randomizer.nextInt(memHeap.getOccupiedHeaps());
+                    for (int i = 0; i < memHeap.getHeapSize(); i++) {
+                        if (memHeap.getBlock(i).getOccupied()) {
+                            if (rand == 0) {
+                                this.kill (memHeap, i);
+                                this.mergeBlocks (memHeap, i);
+                                break;
+                            }
+                            rand--;
+                        }
+                    }
+                }
+            }
+            else if (queue.isFull() || reqGenerator.getLastRequestId() == reqGenerator.getRequestsQuantity()) {
                 Random randomizer = new Random();
                 int rand = randomizer.nextInt(memHeap.getOccupiedHeaps());
                 for (int i = 0; i < memHeap.getHeapSize(); i++) {
@@ -66,6 +83,9 @@ public class Deallocator {
                         rand--;
                     }
                 }
+            }
+            else {
+                System.out.println("Desalocador desnecessário.");
             }
         }
     }

@@ -19,42 +19,8 @@ public final class CircularQueue {
         return this.elements == this.size;
     }
 
-    public void addRequest(MemRequest memRequest) {
-        if (!isFull()) {
-            if (this.initialPosition == - 1) this.setInitialPosition(0);
-            this.setFinalPosition(this.getFinalPosition() + 1 % this.getSize());
-            this.queue[this.getFinalPosition()] = memRequest;
-            this.setElements(this.getElements() + 1);
-            System.out.println("Requisição " + queue[this.getFinalPosition()].getId() + " alocada na posição " + this.getFinalPosition() + " da fila circular.");
-        }
-    }
-
     public boolean isEmpty() {
         return this.elements == 0;
-    }
-
-    public MemRequest getRequest () {
-        MemRequest memRequest = new MemRequest();
-        if(!isEmpty()) {
-            memRequest = queue[this.getInitialPosition()];
-        }
-        return memRequest;
-    }
-
-    public MemRequest removeRequest () {
-        MemRequest memRequest = new MemRequest();
-        if (!isEmpty()) {
-            memRequest = queue[this.getInitialPosition()];
-            if (this. getInitialPosition () == this.getFinalPosition()) {
-                this.setInitialPosition(-1);
-                this.setFinalPosition(-1);
-            }
-            else {
-                this.setInitialPosition(this.getInitialPosition() + 1 % this.getSize());
-            }
-            this.elements--;
-        }
-        return memRequest;
     }
 
     public void setInitialPosition (int newInitialPosition) {
@@ -83,5 +49,41 @@ public final class CircularQueue {
 
     public int getSize () {
         return this.size;
+    }
+
+    public MemRequest getRequest () {
+        MemRequest memRequest = new MemRequest();
+        if(!isEmpty()) {
+            memRequest = queue[this.getInitialPosition()];
+        }
+        return memRequest;
+    }
+
+    public void addRequest(MemRequest memRequest) {
+        if (!isFull()) {
+            if (this.initialPosition == - 1) {
+                this.setInitialPosition(0);
+            }
+            this.setFinalPosition((this.getFinalPosition() + 1) % this.getSize());
+            this.queue[this.getFinalPosition()] = memRequest;
+            this.setElements(this.getElements() + 1);
+            System.out.println("Requisição " + queue[this.getFinalPosition()].getId() + " alocada na posição " + this.getFinalPosition() + " da fila circular.");
+        }
+    }
+
+    public MemRequest removeRequest () {
+        MemRequest memRequest = new MemRequest();
+        if (!isEmpty()) {
+            memRequest = queue[this.getInitialPosition()];
+            if (this. getInitialPosition() == this.getFinalPosition()) {
+                this.setInitialPosition(-1);
+                this.setFinalPosition(-1);
+            }
+            else {
+                this.setInitialPosition((this.getInitialPosition() + 1) % this.getSize());
+            }
+            this.setElements(this.getElements() - 1);
+        }
+        return memRequest;
     }
 }

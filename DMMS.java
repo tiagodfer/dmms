@@ -1,14 +1,27 @@
 /**
-* Autores: Tiago Dias Ferreira and Marcello Silva Cruz
+* Autores:  Tiago Dias Ferreira
+*           Marcello Silva Cruz
+*           Matheus Barbosa Consul
 */
 
 /**
-* DMMS: Simulador de Gerenciamento Dinâmico de Memória
+* DMMS: Dynamic Memory Management System
 */
 public class DMMS {
-    // método principal
+    private int finishedRequests = 0;
+    
+    public void setFinishedRequests (int newFinishedRequests) {
+        this.finishedRequests = newFinishedRequests;
+    }
+
+    public int getFinishedRequests () {
+        return this.finishedRequests;
+    }
+
     public static void main(String args[]) {
         if (args.length >= 6) {
+            DMMS dmms = new DMMS();
+
             HeapMap memHeap = new HeapMap();
             MemRequestGenerator reqGenerator = new MemRequestGenerator();
             Deallocator memDeallocator = new Deallocator();
@@ -24,13 +37,19 @@ public class DMMS {
             params.setDeallocParms(memDeallocator, new Integer(args[4]), new Integer(args[5]));
             params.printParms(memHeap, reqGenerator,memDeallocator);
 
-            while (reqGenerator.getRequestsQuantity() > 0 && !queue.isFull()) {
-                    MemRequest memRequest = reqGenerator.generateRandomRequest(reqGenerator.getMinRequestSize(), reqGenerator.getMaxRequestSize());
-                    MemRequest allocRequest = new MemRequest();
-                    
+            MemRequest memRequest = new MemRequest();
+            MemRequest allocRequest = new MemRequest();
+           
+            while (dmms.getFinishedRequests() < reqGenerator.getRequestsQuantity()) {
+                System.out.println("------------");
+                if (!queue.isFull() && reqGenerator.getLastRequestId() != reqGenerator.getRequestsQuantity()) {
+                    memRequest = reqGenerator.generateRandomRequest(reqGenerator.getMinRequestSize(), reqGenerator.getMaxRequestSize());
+                }
+                if (reqGenerator.getLastRequestId() <= reqGenerator.getRequestsQuantity()) {
                     queue.addRequest(memRequest);
-                    memDeallocator.deallocate(queue, memHeap);
-                    memAllocator.allocate(allocRequest, queue, memHeap);
+                }
+                memAllocator.allocate(dmms, allocRequest, queue, memHeap);
+                memDeallocator.deallocate(queue, memHeap, reqGenerator);
             }
         }
         else {
