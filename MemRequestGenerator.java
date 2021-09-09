@@ -55,7 +55,4 @@ public class MemRequestGenerator {
         System.out.println("Requisição " + memRequest.getId()  + " de " + memRequest.getSize() + " kByte(s) gerada.");
         return memRequest;
     }
-
-    public void toQueue (MemRequest memRequest, CircularQueue queue) {
-    }
 }
