@@ -33,7 +33,7 @@ public class Block {
         return this.size;
     }
 
-    public boolean getOccupied () {
+    public boolean isOccupied () {
         return this.occupied;
     }
 }

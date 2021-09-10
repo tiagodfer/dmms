@@ -5,13 +5,13 @@ public class Interface {
         System.out.println("--------------------------------------------------------------------------------");
     }
 
-    public void setHeapParms (HeapMap map, int heapSize) {
-        map.setSize(heapSize);
-        map.addBlock();
+    public void setHeapParams (Heap heap, int heapSize) {
+        heap.setSize(heapSize);
+        heap.addBlock();
     }
 
 
-    public void setReqParms (RequestGenerator generator, int randomMin, int randomMax, int reqQuant) {
+    public void setReqParams (RequestGenerator generator, int randomMin, int randomMax, int reqQuant) {
         generator.setMinRequestSize(randomMin);
         generator.setMaxRequestSize(randomMax);
         generator.setRequestsQuantity(reqQuant);
@@ -19,18 +19,20 @@ public class Interface {
     
 
 
-    public void setDeallocParms (Deallocator deallocator, int maxRamUsage, int freeRamThreshold) {
+    public void setDeallocParams (Deallocator deallocator, int maxRamUsage, int freeRamThreshold, int maxFragmentation) {
         deallocator.setMaxRamUsage(maxRamUsage);
         deallocator.setFreeRamThreshold(freeRamThreshold);
+        deallocator.setMaxFragmentation(maxFragmentation);
     }
 
 
-    public void printParms (HeapMap map, RequestGenerator generator, Deallocator deallocator) {
-        System.out.println("Tamanho do Heap de Memória definido como " + map.getSize() + " kByte(s).");
+    public void printParams (Heap heap, RequestGenerator generator, Deallocator deallocator) {
+        System.out.println("Tamanho do Heap de Memória definido como " + heap.getSize() + " kByte(s).");
         System.out.println("Tamanho mínimo das requisições definido como " + generator.getMinRequestSize() + " kByte(s).");
         System.out.println("Tamanho mínimo das requisições definido como " + generator.getMaxRequestSize() + " kByte(s).");
         System.out.println("Quantidade de requisições a serem realizadas definido como " + generator.getRequestsQuantity() + ".");
         System.out.println("O máximo de ocupação da RAM definido como " + deallocator.getMaxRamUsage() + "%.");
         System.out.println("O limiar mínimo de ocupação de RAM para atuação do Desalocador definido como " + deallocator.getFreeRamThreshold() + "%.");
+        System.out.println("O máximo de fragmentação definido como " + deallocator.getMaxFragmentation() + "%.");
     }
 }

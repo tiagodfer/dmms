@@ -1,17 +1,19 @@
 public class Allocator {
-    public boolean firstFit (DMMS dmms, Request allocRequest, HeapMap map) {
+    public boolean firstFit (DMMS dmms, Request allocRequest, Heap heap) {
         boolean isAllocated = false;
-        for (int i = 0; i < map.getBlockSize(); i++) {
-            if (!map.getBlock(i).getOccupied() && map.getBlock(i).getSize() >= allocRequest.getSize()) {
-                if (map.getBlock(i).getSize() > allocRequest.getSize()) {
-                    map.getArray().add((i + 1), new Block((allocRequest.getSize() + map.getBlock(i).getStart()), (map.getBlock(i).getSize() - allocRequest.getSize()), false));
-                    System.out.println("Criado novo bloco iniciado em " + map.getBlock(i + 1).getStart() + " de " + map.getBlock(i + 1).getSize() + " byte(s).");
+        for (int i = 0; i < heap.getBlockSize(); i++) {
+            if (!heap.getBlock(i).isOccupied() && heap.getBlock(i).getSize() >= allocRequest.getSize()) {
+                if (heap.getBlock(i).getSize() > allocRequest.getSize()) {
+                    heap.getHeap().add((i + 1), new Block((allocRequest.getSize() + heap.getBlock(i).getStart()), (heap.getBlock(i).getSize() - allocRequest.getSize()), false));
+                    System.out.println("Criado novo bloco iniciado em " + heap.getBlock(i + 1).getStart() + " de " + heap.getBlock(i + 1).getSize() + " byte(s).");
                 }
-                map.getBlock(i).setSize(allocRequest.getSize());
-                map.getBlock(i).setOccupied(true);
-                map.addOccupation(map.calcOccupation(allocRequest.getSize()));
-                System.out.println("Requisição " + allocRequest.getId()  + " alocada em memória do endereço " + map.getBlock(i).getStart() + " até o endereço " + (map.getBlock(i).getSize() + map.getBlock(i).getStart() - 1) + ".");
-                System.out.println("Heap está " + map.getOccupation() + "% ocupado.");
+                heap.getBlock(i).setSize(allocRequest.getSize());
+                heap.getBlock(i).setOccupied(true);
+                heap.addOccupation(heap.calcOccupation(allocRequest.getSize()));
+                heap.setFragmentation(heap.calcFragmentation());
+                System.out.println("Requisição " + allocRequest.getId()  + " alocada em memória do endereço " + heap.getBlock(i).getStart() + " até o endereço " + (heap.getBlock(i).getSize() + heap.getBlock(i).getStart() - 1) + ".");
+                System.out.println("Heap está " + heap.getOccupation() + "% ocupado.");
+                System.out.println("Heap está " + heap.getFragmentation() + "% fragmentado.");
                 dmms.setFinishedRequests(dmms.getFinishedRequests() + 1);
                 isAllocated = true;
                 break;
@@ -20,10 +22,10 @@ public class Allocator {
         return isAllocated;
     }
 
-    public void allocate (DMMS dmms, Request allocRequest, Queue queue, HeapMap map) {
+    public void allocate (DMMS dmms, Request allocRequest, Queue queue, Heap heap) {
         if (!queue.isEmpty()) {
             allocRequest = queue.getRequest();
-            if (this.firstFit(dmms, allocRequest, map)) {
+            if (this.firstFit(dmms, allocRequest, heap)) {
                 queue.removeRequest();
             }
         }

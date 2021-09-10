@@ -19,10 +19,10 @@ public class DMMS {
     }
 
     public static void main(String args[]) {
-        if (args.length >= 6) {
+        if (args.length >= 7) {
             DMMS dmms = new DMMS();
 
-            HeapMap map = new HeapMap();
+            Heap heap = new Heap();
             RequestGenerator generator = new RequestGenerator();
             Deallocator deallocator = new Deallocator();
             Queue queue = new Queue(10);
@@ -31,10 +31,10 @@ public class DMMS {
             Interface params = new Interface();
 
             params.greeting();
-            params.setHeapParms(map, new Integer(args[0]));
-            params.setReqParms(generator, new Integer(args[1]), new Integer(args[2]), new Integer(args[3]));
-            params.setDeallocParms(deallocator, new Integer(args[4]), new Integer(args[5]));
-            params.printParms(map, generator,deallocator);
+            params.setHeapParams(heap, new Integer(args[0]));
+            params.setReqParams(generator, new Integer(args[1]), new Integer(args[2]), new Integer(args[3]));
+            params.setDeallocParams(deallocator, new Integer(args[4]), new Integer(args[5]), new Integer(args[6]));
+            params.printParams(heap, generator,deallocator);
 
             Request memRequest = new Request();
             Request allocRequest = new Request();
@@ -47,8 +47,14 @@ public class DMMS {
                 if (generator.getLastRequestId() <= generator.getRequestsQuantity()) {
                     queue.addRequest(memRequest);
                 }
-                allocator.allocate(dmms, allocRequest, queue, map);
-                deallocator.deallocate(queue, map, generator);
+                allocator.allocate(dmms, allocRequest, queue, heap);
+                deallocator.deallocate(queue, heap, generator);
+                /*
+                 * Debugger
+                for (int i = 0; i < heap.getBlockSize(); i++) {
+                    System.out.println(heap.getBlock(i).isOccupied() + " " + heap.getBlock(i).getStart() + " " + heap.getBlock(i).getSize() + " " + heap.getFragmentation());
+                }
+                */
             }
         }
         else {
