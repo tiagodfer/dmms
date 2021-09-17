@@ -16,7 +16,7 @@ public class Heap {
     public float calcFragmentation () {
         int largestFreeBlockSize = 0;
         float freeSpace = 0;
-        for (int i = 0; i < this.getBlockSize(); i++) {
+        for (int i = 0; i < this.getHeapSize(); i++) {
             if (!this.getBlock(i).isOccupied()) {
                 if (this.getBlock(i).getSize() > largestFreeBlockSize) {
                     largestFreeBlockSize = this.getBlock(i).getSize();
@@ -27,9 +27,9 @@ public class Heap {
         return (((freeSpace - largestFreeBlockSize) / freeSpace) * 100);
     }
 
-    public int isOccupiedHeaps () {
+    public int getOccupiedBlocks () {
         int occupied = 0;
-        for (int i = 0; i < this.getBlockSize(); i++) {
+        for (int i = 0; i < this.getHeapSize(); i++) {
             if (this.getBlock(i).isOccupied()) {
                 occupied++;
             }
@@ -41,11 +41,11 @@ public class Heap {
         this.heap.add(new Block(0, this.getSize(), false));
     }
 
-    public void removeOccupation (float newOccupation) {
+    public void decOccupation (float newOccupation) {
         this.occupation -= newOccupation;
     }
 
-    public void addOccupation (float newOccupation) {
+    public void incOccupation (float newOccupation) {
         this.occupation += newOccupation;
     }
 
@@ -73,7 +73,7 @@ public class Heap {
         return this.heap.get(block);
     }
 
-    public int getBlockSize () {
+    public int getHeapSize () {
         return this.heap.size();
     }
 

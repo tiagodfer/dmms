@@ -25,6 +25,7 @@ public class DMMS {
             Heap heap = new Heap();
             RequestGenerator generator = new RequestGenerator();
             Deallocator deallocator = new Deallocator();
+            Defragger defragger = new Defragger();
             Queue queue = new Queue(10);
             Allocator allocator = new Allocator();
 
@@ -33,8 +34,9 @@ public class DMMS {
             params.greeting();
             params.setHeapParams(heap, new Integer(args[0]));
             params.setReqParams(generator, new Integer(args[1]), new Integer(args[2]), new Integer(args[3]));
-            params.setDeallocParams(deallocator, new Integer(args[4]), new Integer(args[5]), new Integer(args[6]));
-            params.printParams(heap, generator,deallocator);
+            params.setDeallocParams(deallocator, new Integer(args[4]), new Integer(args[5]));
+            params.setDefragParams(defragger, new Integer(args[6]));
+            params.printParams(heap, generator, deallocator, defragger);
 
             Request memRequest = new Request();
             Request allocRequest = new Request();
@@ -49,12 +51,11 @@ public class DMMS {
                 }
                 allocator.allocate(dmms, allocRequest, queue, heap);
                 deallocator.deallocate(queue, heap, generator);
-                /*
-                 * Debugger
-                for (int i = 0; i < heap.getBlockSize(); i++) {
+                defragger.defragHeap(heap);
+                // debug
+                for (int i = 0; i < heap.getHeapSize(); i++) {
                     System.out.println(heap.getBlock(i).isOccupied() + " " + heap.getBlock(i).getStart() + " " + heap.getBlock(i).getSize() + " " + heap.getFragmentation());
                 }
-                */
             }
         }
         else {

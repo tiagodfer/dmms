@@ -10,29 +10,28 @@ public class Interface {
         heap.addBlock();
     }
 
-
     public void setReqParams (RequestGenerator generator, int randomMin, int randomMax, int reqQuant) {
         generator.setMinRequestSize(randomMin);
         generator.setMaxRequestSize(randomMax);
         generator.setRequestsQuantity(reqQuant);
     }
-    
 
-
-    public void setDeallocParams (Deallocator deallocator, int maxRamUsage, int freeRamThreshold, int maxFragmentation) {
+    public void setDeallocParams (Deallocator deallocator, int maxRamUsage, int freeRamThreshold) {
         deallocator.setMaxRamUsage(maxRamUsage);
         deallocator.setFreeRamThreshold(freeRamThreshold);
-        deallocator.setMaxFragmentation(maxFragmentation);
     }
 
+    public void setDefragParams (Defragger defragger, int maxFragmentation) {
+        defragger.setMaxFragmentation(maxFragmentation);
+    }
 
-    public void printParams (Heap heap, RequestGenerator generator, Deallocator deallocator) {
+    public void printParams (Heap heap, RequestGenerator generator, Deallocator deallocator, Defragger defragger) {
         System.out.println("Tamanho do Heap de Memória definido como " + heap.getSize() + " kByte(s).");
         System.out.println("Tamanho mínimo das requisições definido como " + generator.getMinRequestSize() + " kByte(s).");
         System.out.println("Tamanho mínimo das requisições definido como " + generator.getMaxRequestSize() + " kByte(s).");
         System.out.println("Quantidade de requisições a serem realizadas definido como " + generator.getRequestsQuantity() + ".");
         System.out.println("O máximo de ocupação da RAM definido como " + deallocator.getMaxRamUsage() + "%.");
         System.out.println("O limiar mínimo de ocupação de RAM para atuação do Desalocador definido como " + deallocator.getFreeRamThreshold() + "%.");
-        System.out.println("O máximo de fragmentação definido como " + deallocator.getMaxFragmentation() + "%.");
+        System.out.println("O máximo de fragmentação definido como " + defragger.getMaxFragmentation() + "%.");
     }
 }
