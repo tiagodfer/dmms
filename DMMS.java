@@ -52,10 +52,11 @@ public class DMMS {
                 allocator.allocate(dmms, allocRequest, queue, heap);
                 deallocator.deallocate(queue, heap, generator);
                 defragger.defragHeap(heap);
-                // debug
+                /*
                 for (int i = 0; i < heap.getHeapSize(); i++) {
                     System.out.println(heap.getBlock(i).isOccupied() + " " + heap.getBlock(i).getStart() + " " + heap.getBlock(i).getSize() + " " + heap.getFragmentation());
                 }
+                */
             }
         }
         else {
