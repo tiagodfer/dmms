@@ -1,0 +1,321 @@
+GENERATOR: acquiring emptyQueue.
+ALLOCATOR: acquiring lockHeap.
+DEALLOCATOR: acquiring lockHeap.
+ALLOCATOR: lockHeap acquired.
+ALLOCATOR: acquiring fullQueue.
+GENERATOR: emptyQueue acquired.
+GENERATOR: acquiring lockQueue.
+GENERATOR: lockQueue acquired.
+Requisição 0 de 1 kByte(s) alocada na posição 0 da fila circular.
+GENERATOR: releasing lockQueue.
+GENERATOR: lockQueue released.
+GENERATOR: releasing fullQueue.
+GENERATOR: fullQueue released.
+ALLOCATOR: fullQueue acquired.
+GENERATOR: acquiring emptyQueue.
+GENERATOR: emptyQueue acquired.
+GENERATOR: acquiring lockQueue.
+GENERATOR: lockQueue acquired.
+ALLOCATOR: acquiring lockQueue.
+Requisição 1 de 1 kByte(s) alocada na posição 1 da fila circular.
+GENERATOR: releasing lockQueue.
+GENERATOR: lockQueue released.
+GENERATOR: releasing fullQueue.
+GENERATOR: fullQueue released.
+GENERATOR: acquiring emptyQueue.
+ALLOCATOR: lockQueue acquired.
+GENERATOR: emptyQueue acquired.
+GENERATOR: acquiring lockQueue.
+Criado novo bloco iniciado em 1 de 4 byte(s).
+Requisição 0 alocada em memória no endereço 0 até o endereço 0.
+Current heap:
+true 0 1 0.0
+false 1 4 0.0
+RAM Tot: 5
+RAM Ocup: 1
+RAM Livre: 4
+Atendidos: 1
+ALLOCATOR: releasing lockQueue.
+ALLOCATOR: lockQueue released.
+GENERATOR: lockQueue acquired.
+ALLOCATOR: releasing emptyQueue.
+Requisição 2 de 1 kByte(s) alocada na posição 2 da fila circular.
+GENERATOR: releasing lockQueue.
+GENERATOR: lockQueue released.
+GENERATOR: releasing fullQueue.
+GENERATOR: fullQueue released.
+GENERATOR: acquiring emptyQueue.
+ALLOCATOR: emptyQueue released.
+GENERATOR: emptyQueue acquired.
+GENERATOR: acquiring lockQueue.
+GENERATOR: lockQueue acquired.
+ALLOCATOR: releasing lockHeap.
+Requisição 3 de 1 kByte(s) alocada na posição 3 da fila circular.
+GENERATOR: releasing lockQueue.
+DEALLOCATOR: lockHeap acquired.
+ALLOCATOR: lockHeap released.
+ALLOCATOR: acquiring lockHeap.
+DEALLOCATOR: releasing lockHeap.
+GENERATOR: lockQueue released.
+GENERATOR: releasing fullQueue.
+ALLOCATOR: lockHeap acquired.
+ALLOCATOR: acquiring fullQueue.
+DEALLOCATOR: lockHeap released.
+ALLOCATOR: fullQueue acquired.
+ALLOCATOR: acquiring lockQueue.
+ALLOCATOR: lockQueue acquired.
+GENERATOR: fullQueue released.
+GENERATOR: acquiring emptyQueue.
+Criado novo bloco iniciado em 2 de 3 byte(s).
+GENERATOR: emptyQueue acquired.
+GENERATOR: acquiring lockQueue.
+Requisição 1 alocada em memória no endereço 1 até o endereço 1.
+Current heap:
+true 0 1 0.0
+true 1 1 0.0
+false 2 3 0.0
+RAM Tot: 5
+RAM Ocup: 2
+RAM Livre: 3
+Atendidos: 2
+ALLOCATOR: releasing lockQueue.
+ALLOCATOR: lockQueue released.
+ALLOCATOR: releasing emptyQueue.
+ALLOCATOR: emptyQueue released.
+ALLOCATOR: releasing lockHeap.
+ALLOCATOR: lockHeap released.
+ALLOCATOR: acquiring lockHeap.
+GENERATOR: lockQueue acquired.
+ALLOCATOR: lockHeap acquired.
+Requisição 4 de 1 kByte(s) alocada na posição 4 da fila circular.
+GENERATOR: releasing lockQueue.
+ALLOCATOR: acquiring fullQueue.
+ALLOCATOR: fullQueue acquired.
+ALLOCATOR: acquiring lockQueue.
+ALLOCATOR: lockQueue acquired.
+GENERATOR: lockQueue released.
+GENERATOR: releasing fullQueue.
+Criado novo bloco iniciado em 3 de 2 byte(s).
+GENERATOR: fullQueue released.
+GENERATOR: acquiring emptyQueue.
+Requisição 2 alocada em memória no endereço 2 até o endereço 2.
+GENERATOR: emptyQueue acquired.
+GENERATOR: acquiring lockQueue.
+Current heap:
+true 0 1 0.0
+true 1 1 0.0
+true 2 1 0.0
+false 3 2 0.0
+RAM Tot: 5
+RAM Ocup: 3
+RAM Livre: 2
+Atendidos: 3
+ALLOCATOR: releasing lockQueue.
+ALLOCATOR: lockQueue released.
+ALLOCATOR: releasing emptyQueue.
+ALLOCATOR: emptyQueue released.
+ALLOCATOR: releasing lockHeap.
+ALLOCATOR: lockHeap released.
+ALLOCATOR: acquiring lockHeap.
+GENERATOR: lockQueue acquired.
+ALLOCATOR: lockHeap acquired.
+ALLOCATOR: acquiring fullQueue.
+Requisição 5 de 1 kByte(s) alocada na posição 5 da fila circular.
+GENERATOR: releasing lockQueue.
+ALLOCATOR: fullQueue acquired.
+ALLOCATOR: acquiring lockQueue.
+GENERATOR: lockQueue released.
+GENERATOR: releasing fullQueue.
+ALLOCATOR: lockQueue acquired.
+GENERATOR: fullQueue released.
+GENERATOR: acquiring emptyQueue.
+Criado novo bloco iniciado em 4 de 1 byte(s).
+GENERATOR: emptyQueue acquired.
+GENERATOR: acquiring lockQueue.
+Requisição 3 alocada em memória no endereço 3 até o endereço 3.
+Current heap:
+true 0 1 0.0
+true 1 1 0.0
+true 2 1 0.0
+true 3 1 0.0
+false 4 1 0.0
+RAM Tot: 5
+RAM Ocup: 4
+RAM Livre: 1
+Atendidos: 4
+ALLOCATOR: releasing lockQueue.
+ALLOCATOR: lockQueue released.
+ALLOCATOR: releasing emptyQueue.
+ALLOCATOR: emptyQueue released.
+ALLOCATOR: releasing lockHeap.
+ALLOCATOR: lockHeap released.
+ALLOCATOR: acquiring lockHeap.
+ALLOCATOR: lockHeap acquired.
+ALLOCATOR: acquiring fullQueue.
+ALLOCATOR: fullQueue acquired.
+ALLOCATOR: acquiring lockQueue.
+GENERATOR: lockQueue acquired.
+Requisição 6 de 1 kByte(s) alocada na posição 6 da fila circular.
+GENERATOR: releasing lockQueue.
+GENERATOR: lockQueue released.
+GENERATOR: releasing fullQueue.
+ALLOCATOR: lockQueue acquired.
+GENERATOR: fullQueue released.
+GENERATOR: acquiring emptyQueue.
+Requisição 4 alocada em memória no endereço 4 até o endereço 4.
+Current heap:
+GENERATOR: emptyQueue acquired.
+GENERATOR: acquiring lockQueue.
+true 0 1 0.0
+true 1 1 0.0
+true 2 1 0.0
+true 3 1 0.0
+true 4 1 0.0
+RAM Tot: 5
+RAM Ocup: 5
+RAM Livre: 1
+Atendidos: 5
+ALLOCATOR: releasing lockQueue.
+ALLOCATOR: lockQueue released.
+ALLOCATOR: releasing emptyQueue.
+ALLOCATOR: emptyQueue released.
+ALLOCATOR: releasing lockHeap.
+ALLOCATOR: lockHeap released.
+ALLOCATOR: acquiring lockHeap.
+GENERATOR: lockQueue acquired.
+ALLOCATOR: lockHeap acquired.
+ALLOCATOR: acquiring fullQueue.
+ALLOCATOR: fullQueue acquired.
+ALLOCATOR: acquiring lockQueue.
+Requisição 7 de 1 kByte(s) alocada na posição 7 da fila circular.
+GENERATOR: releasing lockQueue.
+GENERATOR: lockQueue released.
+GENERATOR: releasing fullQueue.
+ALLOCATOR: lockQueue acquired.
+GENERATOR: fullQueue released.
+GENERATOR: acquiring emptyQueue.
+Current heap:
+GENERATOR: emptyQueue acquired.
+GENERATOR: acquiring lockQueue.
+true 0 1 0.0
+true 1 1 0.0
+true 2 1 0.0
+true 3 1 0.0
+true 4 1 0.0
+RAM Tot: 5
+RAM Ocup: 5
+RAM Livre: 1
+Atendidos: 5
+ALLOCATOR: releasing lockQueue.
+ALLOCATOR: lockQueue released.
+ALLOCATOR: releasing emptyQueue.
+ALLOCATOR: emptyQueue released.
+ALLOCATOR: releasing lockHeap.
+ALLOCATOR: lockHeap released.
+ALLOCATOR: acquiring lockHeap.
+ALLOCATOR: lockHeap acquired.
+ALLOCATOR: acquiring fullQueue.
+ALLOCATOR: fullQueue acquired.
+ALLOCATOR: acquiring lockQueue.
+GENERATOR: lockQueue acquired.
+Requisição 8 de 1 kByte(s) alocada na posição 8 da fila circular.
+GENERATOR: releasing lockQueue.
+GENERATOR: lockQueue released.
+GENERATOR: releasing fullQueue.
+ALLOCATOR: lockQueue acquired.
+GENERATOR: fullQueue released.
+GENERATOR: acquiring emptyQueue.
+Current heap:
+GENERATOR: emptyQueue acquired.
+GENERATOR: acquiring lockQueue.
+true 0 1 0.0
+true 1 1 0.0
+true 2 1 0.0
+true 3 1 0.0
+true 4 1 0.0
+RAM Tot: 5
+RAM Ocup: 5
+RAM Livre: 1
+Atendidos: 5
+ALLOCATOR: releasing lockQueue.
+ALLOCATOR: lockQueue released.
+ALLOCATOR: releasing emptyQueue.
+ALLOCATOR: emptyQueue released.
+ALLOCATOR: releasing lockHeap.
+ALLOCATOR: lockHeap released.
+ALLOCATOR: acquiring lockHeap.
+GENERATOR: lockQueue acquired.
+ALLOCATOR: lockHeap acquired.
+ALLOCATOR: acquiring fullQueue.
+ALLOCATOR: fullQueue acquired.
+ALLOCATOR: acquiring lockQueue.
+Requisição 9 de 1 kByte(s) alocada na posição 9 da fila circular.
+GENERATOR: releasing lockQueue.
+GENERATOR: lockQueue released.
+ALLOCATOR: lockQueue acquired.
+GENERATOR: releasing fullQueue.
+Current heap:
+GENERATOR: fullQueue released.
+true 0 1 0.0
+true 1 1 0.0
+true 2 1 0.0
+true 3 1 0.0
+true 4 1 0.0
+RAM Tot: 5
+RAM Ocup: 5
+RAM Livre: 1
+Atendidos: 5
+ALLOCATOR: releasing lockQueue.
+ALLOCATOR: lockQueue released.
+ALLOCATOR: releasing emptyQueue.
+ALLOCATOR: emptyQueue released.
+ALLOCATOR: releasing lockHeap.
+ALLOCATOR: lockHeap released.
+ALLOCATOR: acquiring lockHeap.
+ALLOCATOR: lockHeap acquired.
+ALLOCATOR: acquiring fullQueue.
+ALLOCATOR: fullQueue acquired.
+ALLOCATOR: acquiring lockQueue.
+ALLOCATOR: lockQueue acquired.
+Current heap:
+true 0 1 0.0
+true 1 1 0.0
+true 2 1 0.0
+true 3 1 0.0
+true 4 1 0.0
+RAM Tot: 5
+RAM Ocup: 5
+RAM Livre: 1
+Atendidos: 5
+ALLOCATOR: releasing lockQueue.
+ALLOCATOR: lockQueue released.
+ALLOCATOR: releasing emptyQueue.
+ALLOCATOR: emptyQueue released.
+ALLOCATOR: releasing lockHeap.
+ALLOCATOR: lockHeap released.
+ALLOCATOR: acquiring lockHeap.
+ALLOCATOR: lockHeap acquired.
+ALLOCATOR: acquiring fullQueue.
+ALLOCATOR: fullQueue acquired.
+ALLOCATOR: acquiring lockQueue.
+ALLOCATOR: lockQueue acquired.
+Current heap:
+true 0 1 0.0
+true 1 1 0.0
+true 2 1 0.0
+true 3 1 0.0
+true 4 1 0.0
+RAM Tot: 5
+RAM Ocup: 5
+RAM Livre: 1
+Atendidos: 5
+ALLOCATOR: releasing lockQueue.
+ALLOCATOR: lockQueue released.
+ALLOCATOR: releasing emptyQueue.
+ALLOCATOR: emptyQueue released.
+ALLOCATOR: releasing lockHeap.
+ALLOCATOR: lockHeap released.
+ALLOCATOR: acquiring lockHeap.
+ALLOCATOR: lockHeap acquired.
+ALLOCATOR: acquiring fullQueue.
+DEALLOCATOR: acquiring lockHeap.
