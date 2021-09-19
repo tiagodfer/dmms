@@ -1,12 +1,13 @@
 # Dual-Core com HT
 
 ## Single 1-10
-Número de Requisições   Tempo de Execução
-100                      0.122s
-1000                     0.230s
-10000                    0.951s
-100000                   5.852s
-1000000                 52.217s
+Número de Requisições | Tempo de Execução
+----------------------|------------------
+100                |      0.122s
+1000               |      0.230s
+10000              |      0.951s
+100000             |      5.852s
+1000000            |     52.217s
 
 ## Dual 1-10
 Número de Requisições   Tempo de Execução
