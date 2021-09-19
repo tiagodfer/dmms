@@ -1,5 +1,6 @@
 import java.util.concurrent.Semaphore;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RequestGenerator extends Thread {
     private int minRequestSize;
@@ -65,44 +66,32 @@ public class RequestGenerator extends Thread {
         this.queue.setFinalPosition((this.queue.getFinalPosition() + 1) % this.queue.getSize());
         this.queue.getRequests()[this.queue.getFinalPosition()] = newReq;
         this.queue.setElements(this.queue.getElements() + 1);
+        System.out.println("Requisição " + newReq.getId()  + " de " + newReq.getSize() + " kByte(s) alocada na posição " + this.queue.getFinalPosition() + " da fila circular.");
     }
 
-    public void genRequest () {
-        Random rand = new Random();
+    public Request genRequest () {
+        //Random rand = new Random();
         this.incLastRequestId();
-        Request newReq = new Request(this.getLastRequestId(), (rand.nextInt(this.maxRequestSize - this.minRequestSize + 1) + this.minRequestSize));
-        this.addRequest(newReq);
-        System.out.println("Requisição " + newReq.getId()  + " de " + newReq.getSize() + " kByte(s) alocada na posição " + this.queue.getFinalPosition() + " da fila circular.");
+        Request newReq = new Request(this.getLastRequestId(), (ThreadLocalRandom.current().nextInt(this.maxRequestSize - this.minRequestSize + 1) + this.minRequestSize));
+        return newReq;
     }
 
     @Override
     public void run () {
-        boolean work = true;
-        while (work) {
+        Request newReq = new Request();
+        while (this.getLastRequestId() + 1 < this.getRequestsNumber()) {
             try {
-                //System.out.println("GENERATOR: acquiring emptyQueue.");
+                newReq = this.genRequest();
                 this.empty.acquire();
-                //System.out.println("GENERATOR: emptyQueue acquired.");
-                //System.out.println("GENERATOR: acquiring lockQueue.");
                 this.lock.acquire();
-                //System.out.println("GENERATOR: lockQueue acquired.");
-                //if (!this.queue.isFull()) {
-                    this.genRequest();
-                //}
-                if (this.getLastRequestId() + 1 >= this.getRequestsNumber()) {
-                    work = false;
-                }
+                this.addRequest(newReq);
             }
             catch (InterruptedException e) {
                 System.out.println("Erro: " + e + "!");
             }
             finally {
-                //System.out.println("GENERATOR: releasing lockQueue.");
                 this.lock.release();
-                //System.out.println("GENERATOR: lockQueue released.");
-                //System.out.println("GENERATOR: releasing fullQueue.");
                 this.full.release();
-                //System.out.println("GENERATOR: fullQueue released.");
             }
         }
     }

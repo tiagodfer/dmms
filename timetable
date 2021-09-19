@@ -1,41 +1,22 @@
 #Single 1-10
 Número de Requisições   Tempo de Execução
-100                     0.122s
-1000                    0.231s
-10000                   0.922s
-100000                  5.667s
-
-#Multi 1-10
+100                      0.122s
+1000                     0.230s
+10000                    0.951s
+100000                   5.852s
+1000000                 52.217s
+#Dual 1-10
 Número de Requisições   Tempo de Execução
-100                     
-1000                    
-10000                   
-100000                  
+100                      0.112s
+1000                     0.223s
+10000                    0.876s
+100000                   5.251s
+1000000                 48.736s
+#Triple 1-10
+Número de Requisições   Tempo de Execução
+100                      0.107s
+1000                     0.234s
+10000                    0.922s
+100000                   5.368s
+1000000                 47.267s
 -----------------------------------------
-#Single 50-100
-Número de Requisições   Tempo de Execução
-100                     0.124s
-1000                    0.226s
-10000                   0.787s
-100000                  5.431s
-
-#Multi 50-100
-Número de Requisições   Tempo de Execução
-100                     
-1000                    
-10000                   
-100000                  
------------------------------------------
-#Single 100-150
-Número de Requisições   Tempo de Execução
-100                     0.124s
-1000                    0.218s
-10000                   0.802s
-100000                  5.398s
-
-#Multi 100-150
-Número de Requisições   Tempo de Execução
-100                     
-1000                    
-10000                   
-100000                  
