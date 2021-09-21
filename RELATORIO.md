@@ -1,5 +1,5 @@
 # Relatório
-[]O algoritmo deverá acessar as requisições para alocação de memória a partir de um vetor em memória (vetor de requisições), implementado como uma fila circular.
+[] O algoritmo deverá acessar as requisições para alocação de memória a partir de um vetor em memória (vetor de requisições), implementado como uma fila circular.
 []Cada requisição deve informar ao algoritmo de alocação de memória o tamanho da variável dinâmica a ser alocada, bem como seu respectivo identificador.
 []Um gerador de requisições randômicas deve alimentar o vetor de requisições para que este sempre disponha de requisições suficientes para possibilitar o trabalho em fluxo contínuo do algoritmo de alocação.
 O alocador de memória e o gerador de requisições randômicas devem compor, portanto, duas threads do sistema (uma thread é o alocador de memória e outra thread é o gerador de requisições) e ambos operam de forma paralelo/concorrente sobre o vetor de requisições. Fica a critério de cada equipe optar, para melhora de eficiência e de qualidade de sua solução, por implementar esses dois módulos (alocador e gerador) com mais threads cada um.
