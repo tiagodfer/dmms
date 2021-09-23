@@ -1,5 +1,5 @@
 import java.util.concurrent.Semaphore;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Deallocator extends Thread {
     private int maxOccupation;
@@ -45,8 +45,7 @@ public class Deallocator extends Thread {
 
     public void deallocate () {
         while (this.heap.getOccupation() >= this.getMinThreshold()) {
-            Random randomizer = new Random();
-            int rand = randomizer.nextInt(this.heap.getOccupiedBlocks());
+            int rand = ThreadLocalRandom.current().nextInt(this.heap.getOccupiedBlocks());
             for (int i = 0; i < this.heap.getArraySize(); i++) {
                 if (this.heap.getBlock(i).isOccupied()) {
                     if (rand-- == 0) {

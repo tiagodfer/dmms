@@ -1,5 +1,4 @@
 import java.util.concurrent.Semaphore;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RequestGenerator extends Thread {
@@ -70,7 +69,6 @@ public class RequestGenerator extends Thread {
     }
 
     public Request genRequest () {
-        //Random rand = new Random();
         this.incLastRequestId();
         Request newReq = new Request(this.getLastRequestId(), (ThreadLocalRandom.current().nextInt(this.maxRequestSize - this.minRequestSize + 1) + this.minRequestSize));
         return newReq;
