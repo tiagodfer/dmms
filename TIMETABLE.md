@@ -19,12 +19,13 @@ Número de Requisições | Tempo de Execução
 1000000               |  48.736s
 
 ## Triple 1-10
-Número de Requisições   Tempo de Execução
-100                      0.107s
-1000                     0.234s
-10000                    0.922s
-100000                   5.368s
-1000000                 47.267s
+Número de Requisições |  Tempo de Execução
+----------------------|------------------
+100                   |   0.107s
+1000                  |   0.234s
+10000                 |   0.922s
+100000                |   5.368s
+1000000               |  47.267s
 
 # Quad-Core com HT
 ## Single 1-10
