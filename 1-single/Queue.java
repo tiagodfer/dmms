@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public final class Queue {
+    // fila circular implementada como array de tamanho fixo
     private int initialPosition;
     private int finalPosition;
     private Request queue[];
@@ -15,14 +16,9 @@ public final class Queue {
         this.elements = 0;
     }
 
-    public boolean isFull() {
-        return this.elements == this.size;
-    }
-
-    public boolean isEmpty() {
-        return this.elements == 0;
-    }
-
+    /**
+     * Setters
+     */
     public void setInitialPosition (int newInitialPosition) {
         this.initialPosition = newInitialPosition;
     }
@@ -35,6 +31,9 @@ public final class Queue {
         this.elements = newElements;
     }
 
+    /** 
+     * Getters
+     */
     public int getInitialPosition () {
         return this.initialPosition;
     }
@@ -59,8 +58,24 @@ public final class Queue {
         return memRequest;
     }
 
+    /**
+     * Métodos auxiliares
+     */
+    public boolean isFull() {
+        return this.elements == this.size;
+    }
+
+    public boolean isEmpty() {
+        return this.elements == 0;
+    }
+
+    /**
+     * addRequest:
+     * Insere requisição na fila circular.
+     */
     public void addRequest(Request memRequest) {
         if (!isFull()) {
+            // se a fila estava vazia, corrige posição inicial
             if (this.initialPosition == - 1) {
                 this.setInitialPosition(0);
             }
@@ -71,10 +86,15 @@ public final class Queue {
         }
     }
 
+    /**
+     * removeRequest:
+     * Remove requisição da fila circular.
+     */
     public Request removeRequest () {
         Request memRequest = new Request();
         if (!isEmpty()) {
             memRequest = queue[this.getInitialPosition()];
+            // se chegou ao final da fila, altera variáveis para indicar que ficou vazia
             if (this. getInitialPosition() == this.getFinalPosition()) {
                 this.setInitialPosition(-1);
                 this.setFinalPosition(-1);
@@ -82,7 +102,7 @@ public final class Queue {
             else {
                 this.setInitialPosition((this.getInitialPosition() + 1) % this.getSize());
             }
-            this.setElements(this.getElements() - 1);
+            this.setElements(this.getElements() - 1); //atualiza número de elementos na fila
         }
         return memRequest;
     }

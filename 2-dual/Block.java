@@ -8,7 +8,10 @@ public class Block {
         this.start = start;
         this.size = size;
     }
-
+    
+    /**
+     * Setters
+     */
     public void setRequestId (int newRequestId) {
         this.requestId = newRequestId;
     }
@@ -21,6 +24,9 @@ public class Block {
         this.size = newSize;
     }
 
+    /**
+     * Getters
+     */
     public int getRequestId () {
         return this.requestId;
     }
@@ -37,6 +43,9 @@ public class Block {
         return this.size + this.start - 1;
     }
 
+    /**
+     * Métodos auxiliares
+     */
     public boolean isOccupied () {
         if (this.getRequestId() == - 1) {
             return false;

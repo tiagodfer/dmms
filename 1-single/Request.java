@@ -1,6 +1,6 @@
 public class Request {
     private int id;
-    private int size; //words
+    private int size;
 
     public Request(int id, int size) {
         this.id = id; //talvez usar tipo AtomicInteger (java.util.concurrent.atomic) para automatizar o incremento
@@ -13,10 +13,16 @@ public class Request {
         this.size = 0;
     }
 
+    /**
+     * Setters
+     */
     public void setId (int newId) {
         this.id = newId;
     }
 
+    /**
+     * Getters
+     */
     public int getId() {
         return this.id;
     }

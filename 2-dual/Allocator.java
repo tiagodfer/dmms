@@ -25,6 +25,9 @@ public class Allocator extends Thread {
         this.heap = heap;
     }
 
+    /**
+     * Getters
+     */
     public int getMaxOccupation () {
         return this.maxOccupation;
     }
@@ -45,6 +48,10 @@ public class Allocator extends Thread {
         return this.defragger;
     }
 
+    /**
+     * getRequest:
+     * Verifica se fila circular não está vazia e retorna a requisição.
+     */
     public Request getRequest () {
         Request memRequest = new Request();
         if(!this.queue.isEmpty()) {
@@ -53,6 +60,11 @@ public class Allocator extends Thread {
         return memRequest;
     }
 
+    /**
+     * delRequest:
+     * Remove requisição da fila, atualiza quantidade de elementos na fila e
+     * a próxima posição a ser lida.
+     */
     public void delRequest () {
         if (!this.queue.isEmpty()) {
             if (this.queue.getInitialPosition() == this.queue.getFinalPosition()) {
@@ -66,11 +78,20 @@ public class Allocator extends Thread {
         }
     }
 
+    /**
+     * firstFit:
+     * Verifica se requisição cabe em algum dos blocos livres; em caso positivo,
+     * aloca requisição no primeiro bloco encontrado; caso este bloco seja maior
+     * que o necessário, divide-o.
+     * Retorna true caso tenha conseguido alocar.
+     */
     public boolean firstFit (Request request) {
         boolean isFit = false;
+        // varre o heap em busca do primeiro bloco livre onde a requisição caiba
         for (int i = 0; i < this.heap.getArraySize(); i++) {
             if (!this.heap.getBlock(i).isOccupied() &&
                 this.heap.getBlock(i).getSize() >= request.getSize()) {
+                // o bloco sendo maior que a requisição, divide-o
                 if (this.heap.getBlock(i).getSize() > request.getSize()) {
                     this.heap.getArray().add((i + 1), new Block(-1,
                                                                request.getSize() + this.heap.getBlock(i).getStart(),
@@ -78,14 +99,18 @@ public class Allocator extends Thread {
                     System.out.println("Criado novo bloco iniciado em " + this.heap.getBlock(i + 1).getStart() +
                                        " de " + this.heap.getBlock(i + 1).getSize() + " byte(s).");
                 }
+                // atualiza dados do bloco ocupado
                 this.heap.getBlock(i).setRequestId(request.getId());
                 this.heap.getBlock(i).setSize(request.getSize());
+                // atualiza dados do bloco ocupado
                 this.heap.incOccupied(request.getSize());
                 this.heap.calcOccupation();
                 this.heap.incAllocated();
+                // outputs
                 System.out.println("Requisição " + request.getId() +
                                    " alocada em memória no endereço " + this.heap.getBlock(i).getStart() +
                                    " até o endereço " + (this.heap.getBlock(i).getEnd()) + ".");
+                // retorna true
                 isFit = true;
                 break;
             }
@@ -93,6 +118,11 @@ public class Allocator extends Thread {
         return isFit;
     }
 
+    /**
+     * allocate:
+     * Caso requisição possa ser alocada, aloca na heap e remove da fila.
+     * Calcula fragmentação.
+     */
     public boolean allocate () {
         boolean isFit = this.firstFit(this.getRequest());
         if (isFit) {
@@ -102,6 +132,11 @@ public class Allocator extends Thread {
         return isFit;
     }
 
+    /**
+     * run:
+     * Método principal do Alocador, adquire os semáforos necessários, tenta alocar,
+     * caso aloque, aciona desfragmentador para verificare se deve agir.
+     */
     @Override
     public void run () {
         boolean isFit = false;
@@ -117,16 +152,6 @@ public class Allocator extends Thread {
                 this.lock.acquire();
                 isFit = this.allocate();
             }
-            /*
-            System.out.println("Current heap:");
-            for (int i = 0; i < this.heap.getArraySize(); i++) {
-                System.out.println(this.heap.getBlock(i).isOccupied() + " " + this.heap.getBlock(i).getStart() + " " + this.heap.getBlock(i).getSize() + " " + this.heap.getFragmentation());
-            }
-            System.out.println("RAM Tot: " + this.heap.getSize());
-            System.out.println("RAM Ocup: " + this.heap.getOccupied());
-            System.out.println("RAM Livre: " + this.heap.getFree());
-            System.out.println("Atendidos: " + this.heap.getAllocated());
-            */
             catch (InterruptedException e) {
                 System.out.println("Erro: " + e + "!");
             }

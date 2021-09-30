@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 
 public class Heap {
+    // heap implementado como ArrayList para facilitar as trocas de posição dos elementos
+    // e permitir alteração dinâmica do número de elementos
     private ArrayList<Block> heap;
     private int size;
     private float occupation;
@@ -13,6 +15,11 @@ public class Heap {
         this.fragmentation = 0;
     }
 
+    /**
+     * calcFragmentation:
+     * Calcula fragmentação do heap, verificando qual é o maior bloco vazio
+     * e retornando a razão entre espaço livre e o maior bloco livre.
+     */
     public float calcFragmentation () {
         int largestFreeBlockSize = 0;
         float freeSpace = 0;
@@ -27,6 +34,10 @@ public class Heap {
         return (((freeSpace - largestFreeBlockSize) / freeSpace) * 100);
     }
 
+    /**
+     * getOccupiedBlocks:
+     * Verifica quantos blocos estão ocupados.
+     */
     public int getOccupiedBlocks () {
         int occupied = 0;
         for (int i = 0; i < this.getHeapSize(); i++) {
@@ -36,23 +47,9 @@ public class Heap {
         }
         return occupied;
     }
-
-    public void addBlock () {
-        this.heap.add(new Block(0, this.getSize(), false));
-    }
-
-    public void decOccupation (float newOccupation) {
-        this.occupation -= newOccupation;
-    }
-
-    public void incOccupation (float newOccupation) {
-        this.occupation += newOccupation;
-    }
-
-    public float calcOccupation (int allocSize) {
-        return allocSize / (float)this.getSize() * 100;
-    }
-
+    /**
+     * Setters
+     */
     public void setSize (int newSize) {
         this.size = newSize;
     }
@@ -73,6 +70,9 @@ public class Heap {
         return this.heap.get(block);
     }
 
+    /**
+     * Getters
+     */
     public int getHeapSize () {
         return this.heap.size();
     }
@@ -88,4 +88,24 @@ public class Heap {
     public float getFragmentation () {
         return this.fragmentation;
     }
+
+    /**
+     * Métodos auxiliares
+     */
+    public void addBlock () {
+        this.heap.add(new Block(0, this.getSize(), false));
+    }
+
+    public void decOccupation (float newOccupation) {
+        this.occupation -= newOccupation;
+    }
+
+    public void incOccupation (float newOccupation) {
+        this.occupation += newOccupation;
+    }
+
+    public float calcOccupation (int allocSize) {
+        return allocSize / (float)this.getSize() * 100;
+    }
+
 }

@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Deallocator {//extends Thread {
+public class Deallocator {
     private int minThreshold;
     private Heap heap;
 
@@ -9,10 +9,18 @@ public class Deallocator {//extends Thread {
         this.heap = heap;
     }
 
+    /**
+     * Getters
+     */
     public int getMinThreshold () {
         return this.minThreshold;
     }
 
+    /**
+     * kill:
+     * Decrementa quantidade de blocos ocupados, marca bloco como desocupado
+     * e calcula ocupação do heap.
+     */
     public void kill (int block) {
         this.heap.decOccupied(this.heap.getBlock(block).getSize());
         this.heap.calcOccupation();
@@ -20,6 +28,12 @@ public class Deallocator {//extends Thread {
         this.heap.getBlock(block).setRequestId(-1);
     }
 
+    /**
+     * deallocate:
+     * Varre heap em busca de bloco rand-ésimo bloco ocupado e o descupa,
+     * repete até alcançar limite mínimo de ocupação do heap.
+     * Calcula fragmentação.
+     */
     public void deallocate () {
         while (this.heap.getOccupation() >= this.getMinThreshold()) {
             Random randomizer = new Random();
@@ -35,33 +49,4 @@ public class Deallocator {//extends Thread {
         }
         this.heap.calcFragmentation();
     }
-    
-    /*
-    @Override
-    public void run () {
-        boolean work = true;
-        while (work) {
-            try {
-                DMMS.fullHeap.acquire();
-                DMMS.lockHeap.acquire();
-                if (this.heap.getOccupation() > DMMS.MAX_OCCUPATION) {
-                    this.deallocate();
-                    for (int i = 0; i < this.heap.getArraySize(); i++) {
-                        System.out.println(this.heap.getBlock(i).isOccupied() + " " + this.heap.getBlock(i).getStart() + " " + this.heap.getBlock(i).getSize() + " " + this.heap.getFragmentation());
-                    }
-                }
-            }
-            catch (InterruptedException e) {
-                System.out.println(e);
-            }
-            finally {
-                DMMS.lockHeap.release();
-                DMMS.emptyHeap.release();
-            }
-            if (this.heap.getAllocated() >= DMMS.REQ_NUMBER) {
-                work = false;
-            }
-        }
-    }
-    */
 }

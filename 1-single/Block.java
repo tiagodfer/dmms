@@ -9,10 +9,9 @@ public class Block {
         this.occupied = occupied;
     }
 
-    public void addSize (int newSize) {
-        this.size += newSize;
-    }
-
+    /**
+     * Setters
+     */
     public void setStart (int newStart) {
         this.start = newStart;
     }
@@ -25,12 +24,22 @@ public class Block {
         this.occupied = newOccupied;
     }
 
+    /**
+     * Getters
+     */
     public int getStart () {
         return this.start;
     }
 
     public int getSize () {
         return this.size;
+    }
+
+    /**
+     * Métodos auxiliares
+     */
+    public void addSize (int newSize) {
+        this.size += newSize;
     }
 
     public boolean isOccupied () {

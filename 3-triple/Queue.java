@@ -13,14 +13,9 @@ public class Queue {
         this.elements = 0;
     }
 
-    public boolean isFull() {
-        return this.elements == this.size;
-    }
-
-    public boolean isEmpty() {
-        return this.elements == 0;
-    }
-
+    /**
+     * Setters
+     */
     public void setInitialPosition (int newInitialPosition) {
         this.initialPosition = newInitialPosition;
     }
@@ -33,6 +28,9 @@ public class Queue {
         this.elements = newElements;
     }
 
+    /**
+     * Getters
+     */
     public int getInitialPosition () {
         return this.initialPosition;
     }
@@ -51,5 +49,16 @@ public class Queue {
     
     public int getElements () {
         return this.elements;
+    }
+    
+    /**
+     * Métodos auxiliares
+     */
+    public boolean isFull() {
+        return this.elements == this.size;
+    }
+
+    public boolean isEmpty() {
+        return this.elements == 0;
     }
 }

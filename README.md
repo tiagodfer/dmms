@@ -1,11 +1,3 @@
 # Sistema de Gerenciamento Dinâmico de Memória
-## Como executar
-- time java DMMS 1000 1 10 100 80 20 20
-
-- time java DMMS 1000 1 10 1000 80 20 20
-
-- time java DMMS 1000 1 10 10000 80 20 20
-
-- time java DMMS 1000 1 10 100000 80 20 20
-
-- time java DMMS 1000 1 10 1000000 80 20 20
+run with:
+java DMMS 8000000 4 1000000 100000 85 10 20

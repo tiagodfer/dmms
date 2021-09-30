@@ -1,11 +1,16 @@
-public class Defragger {//extends Thread {
+public class Defragger {
     private Heap heap;
 
     public Defragger (Heap heap) {
         this.heap = heap;
     }
 
+    /**
+     * defragBlocks:
+     * Coloca todos os blocos ocupados no início do heap e realiza ajustes necessários.
+     */
     public void defragBlocks () {
+        // coloca os blocos ocupados no início do heap
         for (int i = 0; i < this.heap.getArraySize(); i++) {
             Block temp;
             if (this.heap.getBlock(i).isOccupied()) {
@@ -15,11 +20,16 @@ public class Defragger {//extends Thread {
                 this.heap.getArray().add(0, temp);
             }
         }
+        // calcula novas posições de início dos blocos
         for (int i = 1; i < this.heap.getArraySize(); i++) {
             this.heap.getBlock(i).setStart(this.heap.getBlock(i - 1).getSize() + this.heap.getBlock(i - 1).getStart());
         }
     }
 
+    /**
+     * mergeBlock:
+     * Une bloco vazio com seu antecessor vazio e sucessor vazio, se houver.
+     */
     public void mergeBlock (int block) {
         if (block != (this.heap.getArraySize() - 1)) {
             if (!this.heap.getBlock(block + 1).isOccupied()) {
@@ -37,43 +47,18 @@ public class Defragger {//extends Thread {
         }
     }
 
+    /**
+     * defrag:
+     * Método principal, varre todos blocos vazios do heap e os une,
+     * desfragmenta heap e atualiza índice de fragmentação.
+     */
     public void defrag () {
+        this.defragBlocks();
         for (int i = 0; i < this.heap.getArraySize(); i++) {
             if (!this.heap.getBlock(i).isOccupied()) {
                 this.mergeBlock(i);
             }
         }
-        this.defragBlocks();
         this.heap.calcFragmentation();
     }
-
-    /*
-    @Override
-    public void run () {
-        boolean work = true;
-        while (this.heap.getAllocated() < DMMS.REQ_NUMBER) {
-            try {
-                DMMS.fullHeap.acquire();
-                DMMS.lockHeap.acquire();
-                if (this.heap.getFragmentation() > DMMS.MAX_FRAGMENTATION) {
-                    this.defrag();
-                    this.heap.calcFragmentation();
-                }
-                for (int i = 0; i < this.heap.getArraySize(); i++) {
-                    System.out.println(this.heap.getBlock(i).isOccupied() + " " + this.heap.getBlock(i).getStart() + " " + this.heap.getBlock(i).getSize() + " " + this.heap.getFragmentation());
-                }
-            }
-            catch (InterruptedException e) {
-                System.out.println(e);
-            }
-            finally {
-                DMMS.lockHeap.release();
-                DMMS.emptyHeap.release();
-            }
-            if (this.heap.getAllocated() >= DMMS.REQ_NUMBER) {
-                work = false;
-            }
-        }
-    }
-    */
 }

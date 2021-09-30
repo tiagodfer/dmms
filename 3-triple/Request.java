@@ -12,6 +12,9 @@ public class Request {
         this.size = size;
     }
 
+    /**
+     * Setters
+     */
     public void setId (int newId) {
         this.id = newId;
     }
@@ -20,6 +23,9 @@ public class Request {
         this.size = newSize;
     }
 
+    /**
+     * Getters
+     */
     public int getId () {
         return this.id;
     }

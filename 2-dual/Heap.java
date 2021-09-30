@@ -19,6 +19,9 @@ public class Heap {
         this.getArray().add(new Block(-1, 0, this.getSize()));
     }
 
+    /**
+     * Setters
+     */
     public void setSize (int newSize) {
         this.size = newSize;
     }
@@ -42,7 +45,10 @@ public class Heap {
     public void setFragmentation (float newFragmentation) {
         this.fragmentation = newFragmentation;
     }
-
+    
+    /**
+     * Getters
+     */
     public ArrayList<Block> getArray () {
         return this.heap;
     }
@@ -79,6 +85,9 @@ public class Heap {
         return this.fragmentation;
     }
     
+    /**
+     * Métodos auxiliares
+     */
     public boolean isFull () {
         if (this.getOccupied() == this.getSize()) {
             return true;
@@ -118,6 +127,10 @@ public class Heap {
         return occupied;
     }
 
+    /**
+     * calcFragmentation:
+     * Encontra maior bloco vazio e divide pelo espaço vazio.
+     */
     public void calcFragmentation () {
         if (this.isFull()) {
             this.setFragmentation(0);

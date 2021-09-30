@@ -4,6 +4,9 @@ public class Deallocator {
     private int maxRamUsage;
     private int freeRamThreshold;
 
+    /**
+     * Setters
+     */
     public void setMaxRamUsage (int newMaxRamUsage) {
         this.maxRamUsage = newMaxRamUsage;
     }
@@ -12,6 +15,9 @@ public class Deallocator {
         this.freeRamThreshold = newFreeRamThreshold;
     }
 
+    /**
+     * Getters
+     */
     public int getMaxRamUsage () {
         return this.maxRamUsage;
     }
@@ -20,6 +26,10 @@ public class Deallocator {
         return this.freeRamThreshold;
     }
 
+    /**
+     * isOverLimit:
+     * Verifica se ocupação do heap está a cima do limite.
+     */
     public boolean isOverLimit (float occupation) {
         if (occupation >= this.getMaxRamUsage()) {
             return true;
@@ -29,6 +39,10 @@ public class Deallocator {
         }
     }
 
+    /**
+     * isOverThreshold:
+     * Verifica se liberação do heap já alcançou limiar mínino.
+     */
     public boolean isOverThreshold (float occupation) {
         if (occupation >= this.getFreeRamThreshold()) {
             return true;
@@ -38,12 +52,21 @@ public class Deallocator {
         }
     }
 
+    /**
+     * kill:
+     * Desocupa bloco e recalcula ocupação do heap.
+     */
     public void kill (Heap heap, int block) {
         heap.getBlock(block).setOccupied(false);
         heap.decOccupation(heap.calcOccupation(heap.getBlock(block).getSize()));
         System.out.println("Processo do bloco " + block + " encerrado.");
     }
 
+    /**
+     * deallocate:
+     * Verifica se ocupação está a cima do limite, em caso positivo,
+     * sorteia processos para serem encerrados até que limiar minimo seja alcançado.
+     */
     public void deallocate (Queue queue, Heap heap, RequestGenerator generator) {
         if (this.isOverLimit(heap.getOccupation())) {
             while (this.isOverThreshold(heap.getOccupation())) {
@@ -58,6 +81,7 @@ public class Deallocator {
                     }
                 }
             }
+            // recalcula fragmentação
             heap.setFragmentation(heap.calcFragmentation());
         }
     }

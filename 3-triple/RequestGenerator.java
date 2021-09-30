@@ -1,4 +1,5 @@
 import java.util.concurrent.Semaphore;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RequestGenerator extends Thread {
@@ -22,6 +23,9 @@ public class RequestGenerator extends Thread {
         this.queue = queue;
     }
 
+    /**
+     * Setters
+     */
     public void setMinRequestSize (int newMinRequestSize) {
         this.minRequestSize = newMinRequestSize;
     }
@@ -38,6 +42,9 @@ public class RequestGenerator extends Thread {
         this.lastRequestId = newLastRequestId;
     }
 
+    /**
+     * Getters
+     */
     public int getMinRequestSize () {
         return this.minRequestSize;
     }
@@ -54,10 +61,17 @@ public class RequestGenerator extends Thread {
         return this.lastRequestId;
     }
 
+    /**
+     * Métodos auxiliares
+     */
     public void incLastRequestId () {
         this.lastRequestId++;
     }
 
+    /**
+     * addRequest:
+     * Insere requisição na fila circular.
+     */
     public void addRequest (Request newReq) {
         if (this.queue.getInitialPosition() == - 1) {
             this.queue.setInitialPosition(0);
@@ -68,12 +82,21 @@ public class RequestGenerator extends Thread {
         System.out.println("Requisição " + newReq.getId()  + " de " + newReq.getSize() + " kByte(s) alocada na posição " + this.queue.getFinalPosition() + " da fila circular.");
     }
 
+    /**
+     * run:
+     * Adquire e libera os semáforos necessários ao acesso à fila circular.
+     */
     public Request genRequest () {
+        //Random rand = new Random();
         this.incLastRequestId();
         Request newReq = new Request(this.getLastRequestId(), (ThreadLocalRandom.current().nextInt(this.maxRequestSize - this.minRequestSize + 1) + this.minRequestSize));
         return newReq;
     }
 
+    /**
+     * run:
+     * Adquire e libera os semáforos necessários ao acesso à fila circular.
+     */
     @Override
     public void run () {
         Request newReq = new Request();

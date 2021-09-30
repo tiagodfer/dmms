@@ -6,6 +6,9 @@ public class RequestGenerator {
     private int requestsQuantity;
     private int lastRequestId;
 
+    /**
+     * Setters
+     */
     public void setMinRequestSize (int newMinRequestSize) {
         this.minRequestSize = newMinRequestSize;
     }
@@ -22,6 +25,9 @@ public class RequestGenerator {
         this.lastRequestId = newLastRequestId;
     }
 
+    /**
+     * Getters
+     */
     public int getMinRequestSize () {
         return this.minRequestSize;
     }
@@ -38,10 +44,17 @@ public class RequestGenerator {
         return this.lastRequestId;
     }
 
+    /**
+     * Métodos auxiliares
+     */
     public void incrementLastRequestId () {
         this.lastRequestId++;
     }
 
+    /**
+     * generateRandomRequest:
+     * Gera requisição de tamanho aleatório e o retorna.
+     */
     public Request generateRandomRequest (int minRequestSize, int maxRequestSize) {
         Random randomizer = new Random();
         Request memRequest = new Request(lastRequestId, randomizer.nextInt(maxRequestSize - minRequestSize + 1) + minRequestSize);

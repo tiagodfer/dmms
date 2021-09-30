@@ -1,5 +1,4 @@
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class DMMS {
     public static void main (String args[]) {
@@ -20,17 +19,12 @@ public class DMMS {
             Semaphore empty = new Semaphore(10, true);
             Semaphore full = new Semaphore(0, true);
             
-            //ReentrantLock lockHeap = new ReentrantLock(true);
             Semaphore lockHeap = new Semaphore(1, true);
 
             RequestGenerator reqGen = new RequestGenerator(MIN_REQ_SIZE, MAX_REQ_SIZE, REQ_NUMBER, lock, empty, full, queue);
             Defragger defragger = new Defragger(heap);
             Deallocator deallocator = new Deallocator(MAX_OCCUPATION, MIN_THRESHOLD, REQ_NUMBER, MAX_FRAGMENTATION, lockHeap, defragger, heap);
             Allocator allocator = new Allocator(MAX_OCCUPATION, MAX_FRAGMENTATION, REQ_NUMBER, lock, empty, full, lockHeap, deallocator, defragger, queue, heap);
-
-            //allocator.setPriority(1);
-            //deallocator.setPriority(10);
-            //reqGen.setPriority(10);
 
             reqGen.start();
             allocator.start();
